@@ -21,14 +21,14 @@ class FollowupsController < ApplicationController
   def update
     @followup = current_team.followups.find(params[:id])
     @followup.update_attributes!(params[:followup])
-    flash[:notice] = "The followup has been updated"
+    flash[:notice] = "The follow up has been updated"
     redirect_to request.referer
   end
 
   def destroy
     @followup = current_team.followups.find(params[:id])
     @followup.destroy
-    flash[:notice] = "The followup has been removed"
+    flash[:notice] = "The follow up has been removed"
     redirect_to request.referer
   end
 

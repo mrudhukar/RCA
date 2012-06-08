@@ -39,7 +39,26 @@
   </div>
 
   <div class="span6 well">
-    <h3>Unresolved Follow ups</h3>
+    <div class="has-below-1">
+      <h3>Unresolved Follow ups</h3>
+    </div>
+
+    <% if @followups.any? %>
+      <table class="table table-stripped diag_details white-well">
+        <% @followups.each do |followup| %>
+          <tr>
+            <td>
+              <%= render :partial => "followups/followup", :locals => {:followup => followup, :actions => true} %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="well white-well empty_content">
+        Yay! There are no follow ups to be taken. Go and do RCA!!
+      </div>
+
+    <% end %>
 
   </div>
 </div>
