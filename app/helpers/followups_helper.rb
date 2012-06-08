@@ -11,4 +11,13 @@ module FollowupsHelper
       content_tag(:span, "Completed", :class => "label label-success")
     end
   end
+
+  def followup_hash
+    [
+      ["Not Started", Followup::Status::NOT_STARTED],
+      ["Scheduled", Followup::Status::SCHEDULED],
+      ["Started", Followup::Status::STARTED],
+      ["Completed", Followup::Status::COMPLETED]
+    ]
+  end
 end

@@ -6,6 +6,9 @@
   <%= simple_form_for [@root_cause, @followup], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
     <div class="modal-body">
       <% if @state_change %>
+        <%= f.input :status do %>
+          <%= f.select :status, followup_hash %>
+        <% end %>
       
       <% else %>
         <%= f.input :title, :input_html => {:class => 'span4'} %>

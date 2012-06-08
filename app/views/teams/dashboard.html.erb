@@ -4,18 +4,7 @@
   <div class="span6 well">
     <div class="has-below-1">
 
-      <div class="btn-group pull-right">
-        <%= link_to("Conduct RCA", "", :class => "btn btn-primary ") %>
-        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li>
-            <%= link_to("Update Bugs", refresh_team_path(current_team))%>
-          </li>
-        </ul>
-      </div>
-      
+      <%= link_to("Update Bugs", refresh_team_path(current_team), :class => "btn pull-right")%>
       <h3>Bugs for RCA</h3>
     </div>
 

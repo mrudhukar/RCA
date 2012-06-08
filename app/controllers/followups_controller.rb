@@ -16,6 +16,7 @@ class FollowupsController < ApplicationController
 
   def edit
     @followup = current_team.followups.find(params[:id])
+    @state_change = params[:status].present?
   end
 
   def update

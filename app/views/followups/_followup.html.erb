@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="btn-group pull-right">
-    <%= link_to("Update Status", "", :remote => true, :class => "btn btn-mini btn-success")%>
+    <%= link_to("Update Status", edit_root_cause_followup_path(followup.root_cause, followup, :status => "true"), :remote => true, :class => "btn btn-mini btn-success")%>
     <button class="btn dropdown-toggle btn-mini btn-success" data-toggle="dropdown">
       <span class="caret"></span>
     </button>
