@@ -1,6 +1,5 @@
 <div class="row-fluid">
   <div class="well">
-
     <div>
       <% if @bug.ignored? %>
         <%= link_to("Include", team_bug_path(current_team, @bug, :ignore => false),:method => :put, :class => "btn btn-primary pull-right")%>
@@ -13,6 +12,12 @@
     <div class ="dim">
       <%= auto_link(@bug.description) %>
     </div>
+  </div>
 
+  <div class="well">
+    <div>
+      <%= link_to("Add/Edit", "", :class => "btn btn-primary pull-right") %>
+      <h4>Root Causes</h4>
+    </div>
   </div>
 </div>
