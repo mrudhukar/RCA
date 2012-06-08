@@ -11,7 +11,52 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608045132) do
+ActiveRecord::Schema.define(:version => 20120608060044) do
+
+  create_table "bugs", :force => true do |t|
+    t.integer  "team_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "pt_id"
+    t.date     "conducted_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "followups", :force => true do |t|
+    t.integer  "team_id"
+    t.integer  "root_cause_id"
+    t.string   "title"
+    t.text     "description"
+    t.integer  "pt_id"
+    t.integer  "status",        :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
+  create_table "root_cause_bugs", :force => true do |t|
+    t.integer  "root_cause_id"
+    t.integer  "bug_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "root_cause_bugs", ["root_cause_id", "bug_id"], :name => "index_root_cause_bugs_on_root_cause_id_and_bug_id"
+
+  create_table "root_causes", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "title"
+    t.integer  "project_id"
+    t.string   "token"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                                  :null => false

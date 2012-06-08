@@ -1,6 +1,4 @@
 class Team < ActiveRecord::Base
-  attr_accessible :title
-
   has_many :followups, :dependent => :destroy
   has_many :bugs, :dependent => :destroy
 
@@ -12,7 +10,7 @@ class Team < ActiveRecord::Base
 
     rca_bugs = project.stories.all(:label => 'rca', :story_type => ['bug'], :includedone => true)
     rca_bugs.each do |ptbug|
-      self.bugs.find_by_pt_id(ptbug.id) || self.bugs.create!(:pt_id => ptbug.id, :title => ptbug.name, :description => ptbug.description)
+      self.bugs.find_by_pt_id(ptbug.id) || self.bugs.create!(:title => ptbug.name, :description => ptbug.description, :pt_id => ptbug.id)
     end
   end
 end
