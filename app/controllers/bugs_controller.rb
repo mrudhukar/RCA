@@ -15,7 +15,7 @@ class BugsController < ApplicationController
   def update
     @bug = current_team.bugs.find(params[:id])
     if params[:rca] == "true"
-
+      handle_update_rcs
     elsif params[:ignore].present?
       handle_ignore_status
     elsif params[:mark_done].present?
@@ -29,6 +29,17 @@ class BugsController < ApplicationController
   end
 
   private
+
+  def handle_update_rcs
+    if params[:rcs]
+      @bug.root_causes = RootCause.find(params[:rcs])
+      flash[:notice] = "The root causes have been updated for the bug"
+    else
+      RootCauseBug.find_by_bug_id_and_root_cause_id(@bug.id, params[:root_cause_id]).destroy
+      flash[:notice] = "The root cause has been removed for the bug"
+    end
+    redirect_to request.referer
+  end
 
   def handle_ignore_status
     ignored = (params[:ignore] == "true")
