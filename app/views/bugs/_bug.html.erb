@@ -17,7 +17,7 @@
   <% end %>
  <% if bug.has_root_cause? %>
     <span class="small has-right">
-      <%= link_to("View #{bug.root_cause_bugs_count} root causes", team_bug_path(current_team, bug)) %>
+      <%= link_to(pluralize(bug.root_cause_bugs_count, "root cause"), team_bug_path(current_team, bug)) %>
     </span>
   <% end %>
   <span class="pull-right">

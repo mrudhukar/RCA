@@ -10,7 +10,7 @@ class RootCausesController < ApplicationController
     @bug = current_team.bugs.find(params[:bug_id])
     @root_cause.bugs << @bug
     flash[:notice] = "Root Cause has been successfull created"
-    redirected_to team_bug_path(current_team, @bug)
+    redirect_to team_bug_path(current_team, @bug)
   end
 
   def index
