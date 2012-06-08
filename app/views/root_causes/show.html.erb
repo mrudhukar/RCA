@@ -11,15 +11,32 @@
     </div>
   </div>
   <div class="well" >
+		<div class ="clearfix has-below-2" >
     <h4> Bugs </h4>
+		</div>
     <table class="table table-stripped diag_details white-well">
         <% @bugs.each do |bug| %>
           <tr>
             <td>
-             <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true} %>
+             <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true } %>
             </td>
           </tr>
         <% end %>
       </table>
   </div>
+  <div class="well" >
+    <div class="clearfix has-below-2">
+		<h4> Followups </h4>
+		</div>
+    <table class="table table-stripped diag_details white-well">
+        <% @followups.each do |followup| %>
+          <tr>
+            <td>
+             <%= render :partial => "followups/followup", :locals => {:followup => followup, :full => true} %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+
 </div>

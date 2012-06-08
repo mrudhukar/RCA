@@ -20,8 +20,7 @@
       <%= link_to(pluralize(bug.root_cause_bugs_count, "root cause"), team_bug_path(current_team, bug)) %>
     </span>
   <% end %>
-
-  <div class="btn-group pull-right">
+	<div class="btn-group pull-right">
     <% if bug.ignored? %>
       <%= link_to("Include", team_bug_path(current_team, bug, :ignore => false), :method => :put, :class => "btn btn-mini") %>
       <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
