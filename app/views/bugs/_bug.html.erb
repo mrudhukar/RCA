@@ -1,4 +1,4 @@
-<div class="has-below"><%= bug.title %></div>
+<div class="has-below"><%= link_to(bug.title, team_bug_path(current_team, bug)) %></div>
 <div class="dim has-below-1 <%= 'truncate' unless full %>"><%= bug.description %></div>
 
 <% if bug.label_list.any? %>

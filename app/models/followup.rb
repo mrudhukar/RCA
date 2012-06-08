@@ -8,6 +8,7 @@ class Followup < ActiveRecord::Base
 
   belongs_to :root_cause
   belongs_to :team
+  belongs_to :user
 
   validates :root_cause, :team, :title, :presence => true
 end

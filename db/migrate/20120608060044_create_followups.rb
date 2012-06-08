@@ -6,6 +6,7 @@ class CreateFollowups < ActiveRecord::Migration
       t.string  :title
       t.text    :description
       t.integer :pt_id
+      t.integer :user_id
 
       t.integer :status, :default => Followup::Status::NOT_STARTED
 
