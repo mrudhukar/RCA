@@ -25,7 +25,11 @@ Rca::Application.routes.draw do
     member do
       get 'refresh'
     end
-    resources :bugs
+    resources :bugs do
+      member do
+        get 'new_rca'
+      end
+    end
   end
 
   resources :users

@@ -1,0 +1,18 @@
+<div id="add_rca_for_bugs" class="modal hide fade in">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Root Causes</h3>
+  </div>
+  <%= simple_form_for [current_team, @bug], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
+    <div class="modal-body">
+      <%= hidden_field_tag(:rca, true)%>
+      <%= f.input :title, :input_html => {:class => 'span4'} %>
+      <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
+    </div>  
+
+    <div class="modal-footer form-actions">
+      <%= f.submit "Add RCA", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+      <%= link_to("Cancel", "#", :class => "btn", :data => {:dismiss => "modal"}) %>
+    </div>
+  <% end %>
+</div>

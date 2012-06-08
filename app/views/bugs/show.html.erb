@@ -6,10 +6,10 @@
           <%= link_to("Include", team_bug_path(current_team, @bug, :ignore => false),:method => :put, :class => "btn btn-primary")%>
           <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
         <% elsif !@bug.rca_done? %>
-          <%= link_to("Mark RCA Done", "", :class => "btn btn-success") %>
+          <%= link_to("Mark RCA Done", team_bug_path(current_team, @bug, :mark_done => true),:method => :put, :class => "btn btn-success") %>
           <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
         <% else %>
-          <%= link_to("Mark for RCA", "", :class => "btn") %>
+          <%= link_to("ReMark for RCA", team_bug_path(current_team, @bug, :mark_done => false),:method => :put, :class => "btn") %>
           <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
         <% end %>
         <ul class="dropdown-menu">
@@ -28,8 +28,9 @@
   </div>
 
   <div class="well">
-    <div class="has-below-2">
-      <%= link_to("Add/Edit", "", :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
+    <div>
+      <%= link_to("Add/Edit", new_rca_team_bug_path(current_team, @bug), :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
+
       <h4>Root Causes</h4>
     </div>
     <div>
