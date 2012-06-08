@@ -13,7 +13,7 @@
           <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
         <% end %>
         <ul class="dropdown-menu">
-          <% unless @bug.ignored? %>
+          <% unless @bug.ignored? || @bug.rca_done? %>
             <li><%= link_to("Ignore Bug", team_bug_path(current_team, @bug, :ignore => true),:method => :put) %></li>
           <% end %>
           <li><%= link_to("View in PT", "https://www.pivotaltracker.com/story/show/#{@bug.pt_id}", :target => "_blank")%></li>

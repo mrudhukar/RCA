@@ -22,12 +22,27 @@
   <% end %>
 
   <div class="btn-group pull-right">
-    <%= link_to("Update RC", add_rca_team_bug_path(current_team, bug), :remote => true, :class => "btn btn-mini btn-success") %>
-    <button class="btn btn-mini btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-    <ul class="dropdown-menu">
-      <li><%= link_to((content_tag(:i,"", :class => "icon-check") + " Mark RCA Done").html_safe, team_bug_path(current_team, bug, :mark_done => true), :method => :put) %></li>
-      <li><%= link_to((content_tag(:i,"", :class => "icon-exclamation-sign") + " Ignore Bug").html_safe, team_bug_path(current_team, bug, :ignore => true),:method => :put) %></li>
-      <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View in PT").html_safe, "https://www.pivotaltracker.com/story/show/#{bug.pt_id}", :target => "_blank")%></li>
-    </ul>
+    <% if bug.ignored? %>
+      <%= link_to("Include", team_bug_path(current_team, bug, :ignore => false), :method => :put, :class => "btn btn-mini") %>
+      <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View in PT").html_safe, "https://www.pivotaltracker.com/story/show/#{bug.pt_id}", :target => "_blank")%></li>
+      </ul>
+    <% elsif bug.rca_done? %>
+      <%= link_to("ReMark for RCA", team_bug_path(current_team, bug, :mark_done => false), :method => :put, :class => "btn btn-mini") %>
+      <button class="btn btn-mini dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View in PT").html_safe, "https://www.pivotaltracker.com/story/show/#{bug.pt_id}", :target => "_blank")%></li>
+      </ul>
+
+    <% else %>
+      <%= link_to("Update RC", add_rca_team_bug_path(current_team, bug), :remote => true, :class => "btn btn-mini btn-success") %>
+      <button class="btn btn-mini btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><%= link_to((content_tag(:i,"", :class => "icon-check") + " Mark RCA Done").html_safe, team_bug_path(current_team, bug, :mark_done => true), :method => :put) %></li>
+        <li><%= link_to((content_tag(:i,"", :class => "icon-exclamation-sign") + " Ignore Bug").html_safe, team_bug_path(current_team, bug, :ignore => true),:method => :put) %></li>
+        <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View in PT").html_safe, "https://www.pivotaltracker.com/story/show/#{bug.pt_id}", :target => "_blank")%></li>
+      </ul>
+    <% end %>
   </div>
 </div>

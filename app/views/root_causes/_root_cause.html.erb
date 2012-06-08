@@ -10,10 +10,10 @@
     </span>
   <% end %>
   <span class="has-right">
-    <%= link_to("<span class=\"label label-important\"> #{root_cause.root_cause_bugs_count} bugs </span>".html_safe, root_causes_path(root_cause)) %>
+    <%= link_to("<span class=\"label label-important\"> #{root_cause.root_cause_bugs_count} bugs </span>".html_safe, root_cause_path(root_cause)) %>
   </span>
 	<span class="has-right">
-    <%= link_to("<span class=\"label label-success\"> #{root_cause.root_cause_bugs_count} followups </span>".html_safe, root_causes_path(root_cause)) %>
+    <%= link_to("<span class=\"label label-success\"> #{root_cause.root_cause_bugs_count} followups </span>".html_safe, root_cause_path(root_cause)) %>
   </span>
 	
 </div>

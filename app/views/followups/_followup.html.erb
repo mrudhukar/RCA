@@ -10,16 +10,17 @@
       Expected by <%= (date < Date.today) ? content_tag(:span, date.strftime("%B %d, %Y"), :class => "label label-important") : date.strftime("%B %d, %Y") %>
     </span>
   <% end %>
+
+  <div class="btn-group pull-right">
+    <%= link_to("Update Status", "", :remote => true, :class => "btn btn-mini btn-success")%>
+    <button class="btn dropdown-toggle btn-mini btn-success" data-toggle="dropdown">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View Root Cause").html_safe, root_cause_path(followup.root_cause))%></li>
+      <li><%= link_to((content_tag(:i,"", :class => "icon-pencil") + " Edit Follow up").html_safe, edit_root_cause_followup_path(followup.root_cause, followup), :remote => true)%></li>
+      <li><%= link_to((content_tag(:i,"", :class => "icon-trash") + " Delete Follow up").html_safe, root_cause_followup_path(followup.root_cause, followup), :confirm => "Are you sure you want to delete this follow up?", :method => :delete)%></li>
+    </ul>
+  </div>
 </div>
 
-<div class="btn-group pull-right">
-  <%= link_to("Update Status", "", :remote => true, :class => "btn btn-mini btn-success")%>
-  <button class="btn dropdown-toggle btn-mini btn-success" data-toggle="dropdown">
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><%= link_to((content_tag(:i,"", :class => "icon-eye-open") + " View Root Cause").html_safe, root_cause_path(followup.root_cause))%></li>
-    <li><%= link_to((content_tag(:i,"", :class => "icon-pencil") + " Edit Follow up").html_safe, edit_root_cause_followup_path(followup.root_cause, followup), :remote => true)%></li>
-    <li><%= link_to((content_tag(:i,"", :class => "icon-trash") + " Delete Follow up").html_safe, root_cause_followup_path(followup.root_cause, followup), :confirm => "Are you sure you want to delete this follow up?", :method => :delete)%></li>
-  </ul>
-</div>

@@ -16,7 +16,7 @@
         <% @bugs.each do |bug| %>
           <tr>
             <td>
-             <%= render :partial => "bugs/bug", :locals => {:bug => bug} %>
+             <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true} %>
             </td>
           </tr>
         <% end %>
