@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120608060044) do
+ActiveRecord::Schema.define(:version => 20120608185021) do
 
   create_table "bugs", :force => true do |t|
     t.integer  "team_id"
@@ -54,6 +54,13 @@ ActiveRecord::Schema.define(:version => 20120608060044) do
     t.integer  "root_cause_bugs_count"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "team_users", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "team_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "teams", :force => true do |t|

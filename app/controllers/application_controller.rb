@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_team
-    Team.first
+    current_user.teams.first
   end
 
   def require_login
