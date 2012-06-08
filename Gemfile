@@ -45,3 +45,4 @@ gem 'exception_notification', :require => 'exception_notifier'
 
 # To use debugger
 # gem 'debugger'
+gem 'pivotal-tracker'
