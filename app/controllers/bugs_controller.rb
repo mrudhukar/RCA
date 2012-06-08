@@ -1,5 +1,10 @@
 class BugsController < ApplicationController
 
+  def show
+    @tab = TabConstants::ARCHIVE
+    @bug = current_team.bugs.find(params[:id])
+  end
+
   def index
     @tab = TabConstants::ARCHIVE
     @bugs = current_team.bugs.order("created_at DESC")
@@ -7,8 +12,7 @@ class BugsController < ApplicationController
   end
 
   def update
-    team = current_team
-    bug = team.bugs.find(params[:id])
+    bug = current_team.bugs.find(params[:id])
     bug.update_attributes!(:ignored => (params[:ignore] == "true"))
     flash[:notice] = "The bug has been ignored"
     redirect_to request.referer

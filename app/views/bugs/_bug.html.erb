@@ -1,5 +1,5 @@
-<div class="has-below"><%= link_to(bug.title, team_bug_path(current_team, bug)) %></div>
-<div class="dim has-below-1 <%= 'truncate' unless full %>"><%= bug.description %></div>
+<div class="has-below"><b><%= link_to(bug.title, team_bug_path(current_team, bug)) %></b></div>
+<div class="dim has-below-1 <%= 'truncate' unless full %>"><%= auto_link(bug.description) %></div>
 
 <% if bug.label_list.any? %>
   <div class="dim has-below-1">
