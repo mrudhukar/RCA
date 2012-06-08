@@ -17,4 +17,8 @@ class Bug < ActiveRecord::Base
   def label_list
     labels.downcase.split(",").reject{|l| l=="rca"}
   end
+
+	def has_root_cause?
+		root_causes.present?
+	end
 end
