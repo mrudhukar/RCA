@@ -1,10 +1,14 @@
-<div class="has-below"><b><%= root_cause.title %></b></div>
-<div class="dim has-below-1 <%= 'truncate' unless full %>"><%= auto_link(root_cause.description) %></div>
+<div class="has-below">
+  <b><%= link_to(root_cause.title, "") %></b>
+</div>
+<div class="dim has-below-1"><%= auto_link(root_cause.description) %></div>
 <div class="dimmer">
   <span class="small has-right"> Identified on <%= root_cause.created_at.strftime("%B %d, %Y") %></span>
-  <span class="small has-right">
-      <%= link_to("Remove", team_bug_path(current_team, @bug, :ignore => true)) %>
-  </span>
+  <% if @bug %>
+    <span class="small has-right">
+      <%= link_to("Remove", team_bug_path(current_team, @bug, :rca => true, :root_cause_id => root_cause.id), :method => :put, :confirm => "Are you sure you want to remove this root cause for this bug?") %>
+    </span>
+  <% end %>
 </div>
 <% if root_cause.followups.any? %>
   
