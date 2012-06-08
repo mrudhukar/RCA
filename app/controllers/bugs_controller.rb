@@ -22,8 +22,17 @@ class BugsController < ApplicationController
       redirect_to request.referer
     elsif params[:mark_done].present?
       mark_done = (params[:mark_done] == "true")
-      bug.update_attributes!(:conducted_at => mark_done ? Date.today : nil)
-      flash[:notice] = "RCA has been marked #{mark_done ? 'done' : 'undone'}"
+      if mark_done
+        if bug.root_causes.size > 0
+          bug.update_attributes!(:conducted_at => Date.today)
+          flash[:notice] = "RCA has been marked done"
+        else
+          flash[:error] = "RCA cannot be marked done as there are not root causes added"
+        end
+      else
+        bug.update_attributes!(:conducted_at => nil)
+        flash[:notice] = "RCA has been marked undone"
+      end
       redirect_to request.referer
     end
     
