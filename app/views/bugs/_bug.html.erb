@@ -15,7 +15,10 @@
   <% if bug.rca_done? %>
     <span class="small has-right">RCA done on <%= bug.conducted_at.strftime("%B %d, %Y") %></span>
   <% end %>
-  
+ <% if bug.has_root_cause? %>
+    <span class="small has-right">
+	      <%= link_to("View"+ "#{bug.root_cause_bugs_count}" +"root causes", team_bug_path(current_team, bug) , :method => :get) %></span>
+  <% end %>
   <span class="pull-right">
     <% if bug.ignored? %>
       <%= link_to("Include", team_bug_path(current_team, bug, :ignore => false),:method => :put, :class => "btn btn-mini")%>
