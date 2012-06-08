@@ -1,0 +1,28 @@
+<div id="add_rca_for_bugs" class="modal hide fade in">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Relevant Root Causes</h3>
+  </div>
+  <%= simple_form_for [current_team, @bug], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
+    <div class="modal-body">
+      <%= hidden_field_tag(:rca, true)%>
+      <div class="has-below-1" style="max-height: 100px;orverflow-y:scroll;">
+        <ul class="unstyled">
+          <% RootCause.all.each do |rc| %>
+            <li>
+              <%= check_box_tag "rcs[]", rc.id, @root_causes.collect(&:id).include?(rc.id) %>
+              <%= rc.title %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <span><b>If you did not find and relevant root cause <%= link_to("Click here", new_root_cause_path(:bug_id => @bug.id),:remote => true) %> to add one</b></span>
+    </div>
+
+    <div class="modal-footer form-actions">
+      <%= f.submit "Update RCA", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+      <%= link_to("Cancel", "#", :class => "btn", :data => {:dismiss => "modal"}) %>
+    </div>
+  <% end %>
+</div>

@@ -27,7 +27,7 @@ Rca::Application.routes.draw do
     end
     resources :bugs do
       member do
-        get 'new_rca'
+        get 'add_rca'
       end
     end
   end
