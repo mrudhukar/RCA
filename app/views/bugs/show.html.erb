@@ -28,9 +28,27 @@
   </div>
 
   <div class="well">
+    <div class="has-below-2">
     <div>
-      <%= link_to("Add/Edit", add_rca_team_bug_path(current_team, @bug), :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
+      <%= link_to("Add/Edit", new_rca_team_bug_path(current_team, @bug), :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
       <h4>Root Causes</h4>
     </div>
+    <div>
+      <% if @bug.has_root_cause? %>
+      <table class="table table-stripped diag_details white-well">
+        <% @root_causes.each do |root_cause| %>
+          <tr>
+            <td>
+              <%= render :partial => "root_causes/root_cause", :locals => {:root_cause => root_cause, :full => true} %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+     <% else %>
+			<div class="well white-well empty_content">
+        You have not added any root causes. <%= link_to("Click here", "")%> to add.
+      </div>
+     <%end%>
+		</div>
   </div>
 </div>
