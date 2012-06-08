@@ -18,9 +18,11 @@ ActiveRecord::Schema.define(:version => 20120608060044) do
     t.string   "title"
     t.text     "description"
     t.integer  "pt_id"
+    t.integer  "root_cause_bugs_count"
+    t.boolean  "ignored",               :default => false
     t.date     "conducted_at"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "followups", :force => true do |t|
@@ -46,8 +48,9 @@ ActiveRecord::Schema.define(:version => 20120608060044) do
   create_table "root_causes", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.integer  "root_cause_bugs_count"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
   end
 
   create_table "teams", :force => true do |t|

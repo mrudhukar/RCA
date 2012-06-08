@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_filter :require_login, :only => [:new, :create, :dashboard]
-  load_and_authorize_resource :except => [:dashboard]
+  load_and_authorize_resource
 
   def new
     # @tab = TabConstants::REGISTER
@@ -38,10 +38,6 @@ class UsersController < ApplicationController
   end
 
   def index
-  end
-
-  def dashboard
-    redirect_to welcome_path() unless current_user
   end
 
 end

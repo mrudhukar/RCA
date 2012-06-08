@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
-  helper_method :current_user
+  helper_method :current_user, :current_team
 
   before_filter :require_login
 
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
   def current_user
     return @current_user if defined?(@current_user)
     @current_user = (current_user_session && current_user_session.record)
+  end
+
+  def current_team
+    Team.first
   end
 
   def require_login

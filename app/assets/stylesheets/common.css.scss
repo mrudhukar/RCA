@@ -49,3 +49,46 @@ form.well{
 .empty_content{
   text-align: center;
 }
+
+.has-below {
+  margin-bottom: 5px;
+}
+
+.has-below-1 {
+  margin-bottom: 10px;
+}
+
+.has-below-2 {
+  margin-bottom: 15px;
+}
+
+.has-above {
+  margin-top: 5px;
+}
+
+.has-above-1 {
+  margin-top: 10px;
+}
+
+.has-above-2 {
+  margin-top: 15px;
+}
+
+.white-well{
+  background-color: #FFF;
+}
+
+.truncate {
+  width: 600px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dim{
+  color: #666;
+}
+
+.dimmer{
+  color: #999;
+}

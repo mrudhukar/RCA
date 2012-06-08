@@ -1,0 +1,41 @@
+<% @title = current_team.title + " dashboard" %>
+
+<div class="row-fluid">
+  <div class="span6 well">
+    <div class="has-below-1">
+      <%= link_to("Conduct RCA", "", :class => "btn btn-primary pull-right") %>
+      <h3>Bugs for RCA</h3>
+    </div>
+
+    <% if @bugs.any? %>
+      <table class="table table-stripped diag_details white-well">
+        <% @bugs.each do |bug| %>
+          <tr>
+            <td>
+              <div class="has-below"><%= bug.title %></div>
+              <div class="dim truncate has-below-1"><%= bug.description %></div>
+              <div class="dimmer">
+                <span class="small">Filed on <%= bug.created_at.strftime("%B %d, %Y") %></span>
+                <span class="pull-right">
+                <%= link_to("Add RC", "", :class => "btn btn-mini btn-success")%>
+                <%= link_to("Ignore", team_bug_path(current_team, bug),:method => :put, :class => "btn btn-mini")%>
+                </span>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="well white-well empty_content">
+        There are no bugs imported from PT for which RCA is pending. <%= link_to("Click here", refresh_team_path(current_team))%> to refresh the list.
+      </div>
+
+    <% end %>
+
+  </div>
+
+  <div class="span6 well">
+    <h3>Unresolved Follow ups</h3>
+
+  </div>
+</div>

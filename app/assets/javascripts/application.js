@@ -21,7 +21,6 @@ function onLoadMethods() {
 
 $(document).ready(function(){
   onLoadMethods();
-  foremHacks();
 });
 
 function openPopup(id){

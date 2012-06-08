@@ -18,13 +18,19 @@ Rca::Application.routes.draw do
 
   match '/welcome' => 'home#welcome', :as => :welcome
 
-  resources :users do
+  resources :teams do
     collection do
       get 'dashboard'
     end
+    member do
+      get 'refresh'
+    end
+    resources :bugs
   end
 
+  resources :users
   resources :user_sessions
+  resources :root_causes
 
   # Sample resource route with options:
   #   resources :products do
@@ -61,7 +67,7 @@ Rca::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'users#dashboard'
+  root :to => 'teams#dashboard'
 
   # See how all your routes lay out with "rake routes"
 
