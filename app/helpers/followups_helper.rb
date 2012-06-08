@@ -20,4 +20,17 @@ module FollowupsHelper
       ["Completed", Followup::Status::COMPLETED]
     ]
   end
+
+  def followups_popover(followups)
+    content_tag(:ul) do
+      content = ''
+      followups.each do |fp|
+        content += content_tag(:li) do
+          fp.title
+        end
+      end
+      content
+    end
+    
+  end
 end

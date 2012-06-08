@@ -34,15 +34,21 @@
   </div>
   <div class="well" >
     <div class="clearfix has-below-2">
+      <%= link_to("New Follow up", new_team_followup_path(current_team, :root_cause_id => @root_cause.id), :remote => true, :class => "btn btn-success pull-right") %>
       <h4> Followups </h4>
     </div>
     <table class="table table-stripped diag_details white-well">
+      <% if @followups.any? %>
       <% @followups.each do |followup| %>
         <tr>
           <td>
            <%= render :partial => "followups/followup", :locals => {:followup => followup, :full => true} %>
           </td>
         </tr>
+      <% end %>
+      <% else %>
+      There are no follow ups for this root cause yet. <%= link_to("Click here", new_team_followup_path(current_team, :root_cause_id => @root_cause.id), :remote => true) %> to create one.
+
       <% end %>
     </table>
   </div>

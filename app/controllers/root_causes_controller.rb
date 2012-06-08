@@ -37,6 +37,7 @@ class RootCausesController < ApplicationController
   end
 
   def show
+    @tab = TabConstants::ROOT_CAUSES
     @root_cause = RootCause.find(params[:id])
 		@bugs= @root_cause.bugs
 		@followups= @root_cause.followups
