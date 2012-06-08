@@ -7,6 +7,7 @@ class CreateBugs < ActiveRecord::Migration
       t.integer :pt_id
       t.integer :root_cause_bugs_count
       t.boolean :ignored, :default => false
+      t.text    :labels
 
       t.date :conducted_at
 

@@ -1,0 +1,27 @@
+<div class="has-below"><%= bug.title %></div>
+<div class="dim has-below-1 <%= 'truncate' unless full %>"><%= bug.description %></div>
+
+<% if bug.label_list.any? %>
+  <div class="dim has-below-1">
+    Labels: 
+    <% bug.label_list.each do |label| %>
+      <span class="label"><%= label %></span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="dimmer">
+  <span class="small has-right">Filed on <%= bug.created_at.strftime("%B %d, %Y") %></span>
+  <% if bug.rca_done? %>
+    <span class="small has-right">RCA done on <%= bug.conducted_at.strftime("%B %d, %Y") %></span>
+  <% end %>
+  
+  <span class="pull-right">
+    <% if bug.ignored? %>
+      <%= link_to("Include", team_bug_path(current_team, bug, :ignore => false),:method => :put, :class => "btn btn-mini")%>
+    <% else %>
+      <%= link_to("Add RC", "", :class => "btn btn-mini btn-success")%>
+      <%= link_to("Ignore", team_bug_path(current_team, bug, :ignore => true),:method => :put, :class => "btn btn-mini")%>
+    <% end %>
+  </span>
+</div>

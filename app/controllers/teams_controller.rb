@@ -11,7 +11,7 @@ class TeamsController < ApplicationController
   def refresh
     current_team.pull_bugs
     flash[:notice] = "Import from PT has been successful"
-    redirect_to root_path()
+    redirect_to request.referer
   end
 
 end

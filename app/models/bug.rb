@@ -9,4 +9,12 @@ class Bug < ActiveRecord::Base
   scope :not_rcaed, where(:conducted_at => nil)
   scope :ignored, where(:ignored => true)
   scope :not_ignored, where(:ignored => false)
+
+  def rca_done?
+    conducted_at.present?
+  end
+
+  def label_list
+    labels.downcase.split(",").reject{|l| l=="rca"}
+  end
 end

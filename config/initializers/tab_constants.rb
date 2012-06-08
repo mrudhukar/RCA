@@ -4,4 +4,5 @@ module TabConstants
   ROOT_CAUSES = "rcs"
   HOME = "Home"
   MEETINGS = "Meetings"
+  ARCHIVE  = "Archive"
 end

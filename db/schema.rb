@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120608060044) do
     t.integer  "pt_id"
     t.integer  "root_cause_bugs_count"
     t.boolean  "ignored",               :default => false
+    t.text     "labels"
     t.date     "conducted_at"
     t.datetime "created_at",                               :null => false
     t.datetime "updated_at",                               :null => false

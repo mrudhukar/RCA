@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
 
   def new
-    # @tab = TabConstants::REGISTER
+    @tab = TabConstants::REGISTER
     @user = User.new
   end
 
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     else
       flash.delete(:recaptcha_error)
       flash.now[:error] = "Please re-enter the words from the image again!" unless captcha_success
-      # @tab = TabConstants::REGISTER
+      @tab = TabConstants::REGISTER
       render :action => "new"
     end
   end
@@ -32,12 +32,4 @@ class UsersController < ApplicationController
       render :action => "edit"
     end
   end
-
-  def show
-    # @tab = TabConstants::HOME
-  end
-
-  def index
-  end
-
 end

@@ -1,0 +1,22 @@
+<% @title = "All Bugs for RCA" %>
+<% @page_action = {name: "Refresh", url: refresh_team_path(current_team)} %>
+
+<div class="row-fluid">
+  <div class="span12">
+    <% if @bugs.any? %>
+      <table class="table table-stripped diag_details white-well">
+        <% @bugs.each do |bug| %>
+          <tr>
+            <td>
+              <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true} %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+    <% else %>
+      <div class="well white-well empty_content">
+        There are no bugs imported from PT for which RCA is pending. <%= link_to("Click here", refresh_team_path(current_team))%> to refresh the list.
+      </div>
+    <% end %>
+  </div>
+</div>

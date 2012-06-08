@@ -24,16 +24,7 @@
         <% @bugs.each do |bug| %>
           <tr>
             <td>
-              <div class="has-below"><%= bug.title %></div>
-              <div class="dim truncate has-below-1"><%= bug.description %></div>
-              <div class="dimmer">
-                <span class="small">Filed on <%= bug.created_at.strftime("%B %d, %Y") %></span>
-                <span class="small"><%=  %></span>
-                <span class="pull-right">
-                <%= link_to("Add RC", "", :class => "btn btn-mini btn-success")%>
-                <%= link_to("Ignore", team_bug_path(current_team, bug),:method => :put, :class => "btn btn-mini")%>
-                </span>
-              </div>
+              <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => false} %>
             </td>
           </tr>
         <% end %>
