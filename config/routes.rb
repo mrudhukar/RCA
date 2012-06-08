@@ -13,6 +13,19 @@ Rca::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  match 'login' => 'user_sessions#new', :as => :login
+  match 'logout' => 'user_sessions#destroy', :as => :logout
+
+  match '/welcome' => 'home#welcome', :as => :welcome
+
+  resources :users do
+    collection do
+      get 'dashboard'
+    end
+  end
+
+  resources :user_sessions
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -48,7 +61,7 @@ Rca::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'users#dashboard'
 
   # See how all your routes lay out with "rake routes"
 

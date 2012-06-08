@@ -1,0 +1,21 @@
+<% @title = "Login" %>
+<% @page_action = {name: "Sign Up", url: new_user_path()} %>
+
+<div class="row-fluid">
+<%= simple_form_for @user_session, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+  <%= f.input :email, :required => false %>
+  <%= f.input :password, :required => false %>
+  <div class="control-group check_boxes">
+    <div class="controls">
+      <label class="checkbox">
+        <%= check_box_tag "user_session[remember_me]", "1", false, :class => "check_boxes" %>
+        Remember me
+      </label>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Login", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+  </div>
+<% end %>
+</div>

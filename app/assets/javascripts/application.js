@@ -12,4 +12,24 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require_tree .
+
+function onLoadMethods() {
+  $(".datepicker" ).datepicker({dateFormat: 'MM dd, yy', maxDate: "+0M +0D"});
+}
+
+$(document).ready(function(){
+  onLoadMethods();
+  foremHacks();
+});
+
+function openPopup(id){
+  $(id).modal({keyboard: true, backdrop: "static", show: true});
+  $(id).on('hidden', function () {
+    $(this).remove();
+  });
+  $(id).on('shown', function () {
+    onLoadMethods();
+  });
+}

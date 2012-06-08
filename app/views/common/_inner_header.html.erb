@@ -1,0 +1,14 @@
+<% if @title || @page_action %>
+<div class="row-fluid" id="inner_header">
+  <% if @title %>
+    <h1 class="span10"><%= @title %></h1>
+  <% end %>
+  <% if @page_action %>
+    <div class="span2 title_action">
+      <%= link_to(@page_action[:name] , @page_action[:url], :class => "btn btn-large btn-primary", :remote => @page_action[:remote], :disable_with => "please wait..") %>
+    </div>
+  <% end %>
+</div>  
+<% end %>
+
+<%= render_flash %>

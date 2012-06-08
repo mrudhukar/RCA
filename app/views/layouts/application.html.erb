@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rca</title>
+  <title>RCA</title>
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/smoothness/jquery-ui.css"/>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
 
-<%= yield %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <%= render :partial => "common/top_navigation" %>
+
+  <div class="container-fluid centered_content">
+    <%= render :partial => "common/inner_header" %>
+    <div class="row-fluid">
+      <div class="span12"><%= yield %></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; Chronus 2012</p>
+  </footer>
+  <div id="modal_popup_container"></div>
 
 </body>
 </html>

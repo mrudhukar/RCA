@@ -34,4 +34,7 @@ Rca::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ENV['RECAPTCHA_PUBLIC_KEY'] = '6LcK78wSAAAAANjwtjdiNsHx-EC-F1CvZ5JR79Rp'
+  ENV['RECAPTCHA_PRIVATE_KEY'] = '6LcK78wSAAAAAAS26uDX2ewPvdYXb7GO50vh3Wcn'
 end

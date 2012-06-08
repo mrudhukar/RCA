@@ -1,0 +1,51 @@
+@import "bourbon";
+
+body{
+  @include linear-gradient(#DDD, #EEE);
+}
+
+#inner_header{
+  margin-bottom: 10px;
+  .title_action{
+    text-align: right;
+  }
+}
+
+.centered_content{
+  margin: 0 20px;
+  padding: 20px;
+  min-height: 500px;
+  border: 1px solid darken(#EEE, 10);
+  @include box-shadow(0 5px 10px hsla(0, 0%, 0%, 0.2));
+  background-color: #FFF;
+  @include border-radius(8px);
+}
+
+.footer{
+  padding: 30px 20px;
+  color: black;
+  text-shadow: 0 1px 0 white;
+  border-top: 1px solid #E5E5E5;
+  background-color: #CCC;
+  margin-top: 20px;
+}
+
+.modal form{
+  margin-bottom: 0;
+  .modal-footer.form-actions{
+    text-align: left;
+  }
+}
+
+form.well{
+  padding-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+  .form-actions{
+    margin-bottom: 0;
+  }
+}
+
+.empty_content{
+  text-align: center;
+}

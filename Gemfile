@@ -24,6 +24,7 @@ end
 
 gem 'jquery-rails'
 gem 'authlogic'
+gem "cancan"
 
 gem 'simple_form'
 gem 'kaminari'

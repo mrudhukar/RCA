@@ -1,0 +1,14 @@
+<% @title = "Account Settings" %>
+
+<div class="row-fluid">
+  <%= simple_form_for @user, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <%= f.input :password_confirmation %>
+    <%= hidden_field_tag :settings, true %>
+    <div class="form-actions">
+      <%= f.submit "Update", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+    </div>
+  <% end %>
+</div>
