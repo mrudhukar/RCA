@@ -3,6 +3,7 @@ class BugsController < ApplicationController
   def show
     @tab = TabConstants::ARCHIVE
     @bug = current_team.bugs.find(params[:id])
+    @root_causes = @bug.root_causes
   end
 
   def index
