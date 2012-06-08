@@ -4,11 +4,6 @@
 <div class="dim has-below-1"><%= auto_link(root_cause.description) %></div>
 <div class="dimmer">
   <span class="small has-right"> Identified on <%= root_cause.created_at.strftime("%B %d, %Y") %></span>
-  <% if @bug %>
-    <span class="small has-right">
-      <%= link_to("Remove", team_bug_path(current_team, @bug, :rca => true, :root_cause_id => root_cause.id), :method => :put, :confirm => "Are you sure you want to remove this root cause for this bug?") %>
-    </span>
-  <% end %>
   <span class="has-right">
     <%= link_to("<span class=\"label label-important\"> #{root_cause.root_cause_bugs_count} bugs </span>".html_safe, root_cause_path(root_cause)) %>
   </span>
@@ -23,6 +18,15 @@
 
 <% end %>
 
-<span class="pull-right">
+<div class="btn-group pull-right">
   <%= link_to("New Followup", new_team_followup_path(current_team, :root_cause_id => root_cause.id), :remote => true, :class => "btn btn-mini btn-success")%>
-</span>
+  <% if @bug %>
+    <button class="btn btn-mini btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to((content_tag(:i,"", :class => "icon-trash") + " Remove").html_safe, team_bug_path(current_team, @bug, :rca => true, :root_cause_id => root_cause.id), :method => :put, :confirm => "Are you sure you want to remove this root cause for this bug?") %>
+      </li>
+    </ul>
+
+  <% end %>
+</div>

@@ -5,13 +5,13 @@
   </div>
   <%= simple_form_for @root_cause, :validate => true, :html => {:class => 'form-vertical' } do |f| %>
     <div class="modal-body">
-      <%= hidden_field_tag(:bug_id, @bug.id)%>
+      <%= hidden_field_tag(:bug_id, @bug.id) if @bug %>
       <%= f.input :title, :input_html => {:class => 'span4'} %>
       <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
     </div>
 
     <div class="modal-footer form-actions">
-      <%= f.submit "Add RCA", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+      <%= f.submit  @bug ? "Add RCA" : "Save", :class => 'btn btn-primary', :disable_with => "please wait.." %>
       <%= link_to("Cancel", "#", :class => "btn", :data => {:dismiss => "modal"}) %>
     </div>
   <% end %>

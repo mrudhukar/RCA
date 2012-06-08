@@ -22,8 +22,15 @@
       
       <h3><%= @bug.title %></h3>
     </div>
-    <div class ="dim">
+    <div class ="dim has-below-1">
       <%= auto_link(@bug.description) %>
+    </div>
+
+    <div class ="dimmer small">
+      <span class="has-right">Filed on <%= @bug.created_at.strftime("%B %d, %Y") %></span>
+      <% if @bug.rca_done? %>
+        <span class="has-right">RCA done on <%= @bug.conducted_at.strftime("%B %d, %Y") %></span>
+      <% end %>
     </div>
   </div>
 

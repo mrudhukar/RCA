@@ -1,5 +1,10 @@
 class FollowupsController < ApplicationController
 
+  def index
+    @tab = TabConstants::ARCHIVE
+    @followups = current_team.followups.order("expected_date")
+  end
+
   def new
     @root_cause = RootCause.find(params[:root_cause_id])
     @followup = current_team.followups.new(:root_cause => @root_cause)
