@@ -3,14 +3,14 @@
     <button class="close" data-dismiss="modal">×</button>
     <h3>Add Followup</h3>
   </div>
-  <%= simple_form_for [@root_cause, @followup], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
+  <%= simple_form_for [current_team, @followup], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
     <div class="modal-body">
       <% if @state_change %>
         <%= f.input :status do %>
           <%= f.select :status, followup_hash %>
         <% end %>
-      
       <% else %>
+        <%= f.hidden_field :root_cause_id if @followup.new_record? %>
         <%= f.input :title, :input_html => {:class => 'span4'} %>
         <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
         <%= f.input :expected_date, :as => :date_picker, :input_html => { :value => @followup.expected_date } %>

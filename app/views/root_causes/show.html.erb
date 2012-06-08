@@ -2,7 +2,7 @@
   <div class="well">
     <div>
       <div class="btn-group pull-right">
-          <%= link_to("Edit", root_causes_path(@root_cause),:method => :put, :class => "btn btn-primary")%>
+        <%= link_to("Edit", edit_root_cause_path(@root_cause), :remote => :true, :class => "btn btn-primary")%>
       </div>
       <h3><%= @root_cause.title %></h3>
     </div>
@@ -11,32 +11,32 @@
     </div>
   </div>
   <div class="well" >
-		<div class ="clearfix has-below-2" >
-    <h4> Bugs </h4>
-		</div>
+    <div class ="clearfix has-below-2" >
+      <h4> Bugs </h4>
+    </div>
     <table class="table table-stripped diag_details white-well">
-        <% @bugs.each do |bug| %>
-          <tr>
-            <td>
-             <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true } %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+      <% @bugs.each do |bug| %>
+        <tr>
+          <td>
+           <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => true, :actions => false } %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
   <div class="well" >
     <div class="clearfix has-below-2">
-		<h4> Followups </h4>
-		</div>
+      <h4> Followups </h4>
+    </div>
     <table class="table table-stripped diag_details white-well">
-        <% @followups.each do |followup| %>
-          <tr>
-            <td>
-             <%= render :partial => "followups/followup", :locals => {:followup => followup, :full => true} %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
+      <% @followups.each do |followup| %>
+        <tr>
+          <td>
+           <%= render :partial => "followups/followup", :locals => {:followup => followup, :full => true} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
   </div>
 
 </div>

@@ -3,7 +3,6 @@
 <div class="row-fluid">
   <div class="span6 well">
     <div class="has-below-1">
-
       <%= link_to("Update Bugs", refresh_team_path(current_team), :class => "btn pull-right")%>
       <h3>Bugs for RCA</h3>
     </div>
@@ -13,7 +12,7 @@
         <% @bugs.each do |bug| %>
           <tr>
             <td>
-              <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => false} %>
+              <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => false, :actions => true} %>
             </td>
           </tr>
         <% end %>

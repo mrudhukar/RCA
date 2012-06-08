@@ -30,13 +30,12 @@ Rca::Application.routes.draw do
         get 'add_rca'
       end
     end
+    resources :followups
   end
 
   resources :users
   resources :user_sessions
-  resources :root_causes do
-    resources :followups
-  end
+  resources :root_causes
 
   # Sample resource route with options:
   #   resources :products do

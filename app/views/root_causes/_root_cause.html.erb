@@ -20,9 +20,9 @@
 <% if root_cause.followups.any? %>
   
 <%else%>
-   <% if @bug %>
-  <span class="pull-right">
-    <%= link_to("Add Followup", new_root_cause_followup_path(root_cause), :remote => true, :class => "btn btn-mini btn-success")%>
-  </span>
-  <% end  %>
+
 <% end %>
+
+<span class="pull-right">
+  <%= link_to("New Followup", new_team_followup_path(current_team, :root_cause_id => root_cause.id), :remote => true, :class => "btn btn-mini btn-success")%>
+</span>
