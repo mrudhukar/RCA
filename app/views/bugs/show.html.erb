@@ -1,12 +1,25 @@
 <div class="row-fluid">
   <div class="well">
     <div>
-      <% if @bug.ignored? %>
-        <%= link_to("Include", team_bug_path(current_team, @bug, :ignore => false),:method => :put, :class => "btn btn-primary pull-right")%>
-      <% else %>
-        <%= link_to("Ignore", team_bug_path(current_team, @bug, :ignore => true),:method => :put, :class => "btn pull-right")%>
-      <% end %>
-      <%= link_to("View in PT", "https://www.pivotaltracker.com/story/show/#{@bug.pt_id}", :target => "_blank",:method => :put, :class => "btn btn-primary pull-right has-right")%>
+      <div class="btn-group pull-right">
+        <% if @bug.ignored? %>
+          <%= link_to("Include", team_bug_path(current_team, @bug, :ignore => false),:method => :put, :class => "btn btn-primary")%>
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <% elsif !@bug.rca_done? %>
+          <%= link_to("Mark RCA Done", "", :class => "btn btn-success") %>
+          <button class="btn btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <% else %>
+          <%= link_to("Mark for RCA", "", :class => "btn") %>
+          <button class="btn dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+        <% end %>
+        <ul class="dropdown-menu">
+          <% unless @bug.ignored? %>
+            <li><%= link_to("Ignore Bug", team_bug_path(current_team, @bug, :ignore => true),:method => :put) %></li>
+          <% end %>
+          <li><%= link_to("View in PT", "https://www.pivotaltracker.com/story/show/#{@bug.pt_id}", :target => "_blank")%></li>
+        </ul>
+      </div>
+      
       <h3><%= @bug.title %></h3>
     </div>
     <div class ="dim">
@@ -16,7 +29,7 @@
 
   <div class="well">
     <div>
-      <%= link_to("Add/Edit", "", :class => "btn btn-primary pull-right") %>
+      <%= link_to("Add/Edit", "", :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
       <h4>Root Causes</h4>
     </div>
     <div>
