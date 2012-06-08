@@ -1,0 +1,3 @@
+$("#add_rca_for_bugs").modal('hide');
+$('#modal_popup_container').html("<%= escape_javascript(render :partial => 'root_causes/new')%>");
+openPopup("#new_root_cause");
