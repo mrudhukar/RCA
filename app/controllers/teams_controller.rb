@@ -4,8 +4,7 @@ class TeamsController < ApplicationController
     redirect_to welcome_path() unless current_user
 
     @bugs = current_team.bugs.not_rcaed.not_ignored.order("created_at DESC")
-    # @bugs = current_team.bugs.not_rcaed.not_ignored.order("created_at DESC")
-
+    @followups = current_team.followups.not_completed.order("expected_date")
   end
 
   def refresh
