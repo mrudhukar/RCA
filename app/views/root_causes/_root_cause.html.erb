@@ -1,5 +1,5 @@
 <div class="has-below">
-  <b><%= link_to(root_cause.title, "") %></b>
+  <b><%= link_to(root_cause.title, root_cause_path(root_cause)) %></b>
 </div>
 <div class="dim has-below-1"><%= auto_link(root_cause.description) %></div>
 <div class="dimmer">
@@ -9,11 +9,20 @@
       <%= link_to("Remove", team_bug_path(current_team, @bug, :rca => true, :root_cause_id => root_cause.id), :method => :put, :confirm => "Are you sure you want to remove this root cause for this bug?") %>
     </span>
   <% end %>
+  <span class="has-right">
+    <%= link_to("<span class=\"label label-important\"> #{root_cause.root_cause_bugs_count} bugs </span>".html_safe, root_causes_path(root_cause)) %>
+  </span>
+	<span class="has-right">
+    <%= link_to("<span class=\"label label-success\"> #{root_cause.root_cause_bugs_count} followups </span>".html_safe, root_causes_path(root_cause)) %>
+  </span>
+	
 </div>
 <% if root_cause.followups.any? %>
   
 <%else%>
+   <% if @bug %>
   <span class="pull-right">
     <%= link_to("Add Followup", "", :class => "btn btn-mini btn-success")%>
   </span>
+  <% end  %>
 <% end %>

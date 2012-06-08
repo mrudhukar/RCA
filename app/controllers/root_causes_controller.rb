@@ -19,7 +19,8 @@ class RootCausesController < ApplicationController
   end
 
   def show
-    
+    @root_cause = RootCause.find(params[:id])
+		@bugs= @root_cause.bugs
   end
 
 end

@@ -1,0 +1,25 @@
+<div class="row-fluid">
+  <div class="well">
+    <div>
+      <div class="btn-group pull-right">
+          <%= link_to("Edit", root_causes_path(@root_cause),:method => :put, :class => "btn btn-primary")%>
+      </div>
+      <h3><%= @root_cause.title %></h3>
+    </div>
+    <div class ="dim">
+      <%= auto_link(@root_cause.description) %>
+    </div>
+  </div>
+  <div class="well" >
+    <h4> Bugs </h4>
+    <table class="table table-stripped diag_details white-well">
+        <% @bugs.each do |bug| %>
+          <tr>
+            <td>
+             <%= render :partial => "bugs/bug", :locals => {:bug => bug} %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+  </div>
+</div>
