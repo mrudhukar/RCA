@@ -1,0 +1,18 @@
+<div id="followups_form" class="modal hide fade in">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">×</button>
+    <h3>Add Followup</h3>
+  </div>
+  <%= simple_form_for [@root_cause, @followup], :validate => true, :html => {:class => 'form-vertical' } do |f| %>
+    <div class="modal-body">
+      <%= f.input :title, :input_html => {:class => 'span4'} %>
+      <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
+      <%= f.input :expected_date, :as => :date_picker, :input_html => { :value => @followup.expected_date } %>
+    </div>
+
+    <div class="modal-footer form-actions">
+      <%= f.submit "Save", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+      <%= link_to("Cancel", "#", :class => "btn", :data => {:dismiss => "modal"}) %>
+    </div>
+  <% end %>
+</div>

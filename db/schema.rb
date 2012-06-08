@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(:version => 20120608060044) do
     t.string   "title"
     t.text     "description"
     t.integer  "pt_id"
+    t.integer  "user_id"
+    t.date     "expected_date"
     t.integer  "status",        :default => 0
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false

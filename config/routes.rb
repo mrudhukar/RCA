@@ -34,7 +34,9 @@ Rca::Application.routes.draw do
 
   resources :users
   resources :user_sessions
-  resources :root_causes
+  resources :root_causes do
+    resources :followups
+  end
 
   # Sample resource route with options:
   #   resources :products do

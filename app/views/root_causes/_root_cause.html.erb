@@ -14,6 +14,6 @@
   
 <%else%>
   <span class="pull-right">
-    <%= link_to("Add Followup", "", :class => "btn btn-mini btn-success")%>
+    <%= link_to("Add Followup", new_root_cause_followup_path(root_cause), :remote => true, :class => "btn btn-mini btn-success")%>
   </span>
 <% end %>
