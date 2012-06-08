@@ -3,7 +3,19 @@
 <div class="row-fluid">
   <div class="span6 well">
     <div class="has-below-1">
-      <%= link_to("Conduct RCA", "", :class => "btn btn-primary pull-right") %>
+
+      <div class="btn-group pull-right">
+        <%= link_to("Conduct RCA", "", :class => "btn btn-primary ") %>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <%= link_to("Update Bugs", refresh_team_path(current_team))%>
+          </li>
+        </ul>
+      </div>
+      
       <h3>Bugs for RCA</h3>
     </div>
 
@@ -16,6 +28,7 @@
               <div class="dim truncate has-below-1"><%= bug.description %></div>
               <div class="dimmer">
                 <span class="small">Filed on <%= bug.created_at.strftime("%B %d, %Y") %></span>
+                <span class="small"><%=  %></span>
                 <span class="pull-right">
                 <%= link_to("Add RC", "", :class => "btn btn-mini btn-success")%>
                 <%= link_to("Ignore", team_bug_path(current_team, bug),:method => :put, :class => "btn btn-mini")%>
