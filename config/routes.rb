@@ -30,13 +30,23 @@ Rca::Application.routes.draw do
         get 'add_rca'
       end
     end
-    resources :followups
+    resources :followups do
+      member do
+        post 'add_to_pt'
+      end
+    end
   end
 
   resources :users
   resources :user_sessions
   resources :root_causes
 
+  resources :reports do
+    collection do
+      get :bug_report
+      get :followups_report
+    end
+  end
   # Sample resource route with options:
   #   resources :products do
   #     member do

@@ -14,8 +14,16 @@ class Followup < ActiveRecord::Base
   belongs_to :team
   belongs_to :user
 
-  validates :root_cause, :team, :title, :presence => true
+  validates :root_cause, :team, :title, :user, :presence => true
   validates :status, :inclusion => {:in => Status.all}
 
   scope :not_completed, where(:status => [Status::NOT_STARTED, Status::SCHEDULED, Status::STARTED])
+
+  def add_pt_story
+    PivotalTracker::Client.token = self.team.token
+    project = PivotalTracker::Project.find(self.team.project_id)
+    a = project.stories.create(:name => self.title, :story_type => 'feature', :description => self.description, :owned_by => self.user.try(:name))
+
+    self.update_attributes!(:pt_id => a.id)
+  end
 end

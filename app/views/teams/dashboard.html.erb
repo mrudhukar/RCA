@@ -35,7 +35,7 @@
       <table class="table table-stripped diag_details white-well">
         <% @followups.each do |followup| %>
           <tr>
-            <td>
+            <td id="followup_entry_<%= followup.id %>">
               <%= render :partial => "followups/followup", :locals => {:followup => followup, :actions => true} %>
             </td>
           </tr>

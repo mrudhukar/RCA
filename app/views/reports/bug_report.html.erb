@@ -1,0 +1,59 @@
+<% @title = "Report of Bugs Filed" %>
+
+<div class="row-fluid">
+  <div class="span12">
+      <div id="container" style="height: 350px"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var x_axis = ['<%= (@dates.join("','")) %>'];
+  var data = <%= @values.inspect %>;
+  var chart;
+  $(document).ready(function() {
+    chart = new Highcharts.Chart({
+      chart: {
+        renderTo: 'container',
+        type: 'line',
+        marginRight: 130,
+        marginBottom: 45
+      },
+      title: {
+        text: 'Issues Report',
+        x: -20 //center
+      },
+      subtitle: {
+        text: 'Source: Pivotal Tracker Bugs',
+        x: -20
+      },
+      xAxis: {
+        categories: x_axis
+      },
+      yAxis: {
+        title: {
+          text: 'Issues Count'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+          }]
+      },
+      tooltip: {
+        formatter: function() {
+          return '<b>'+ this.x +':  '+ this.y +' issues' +'</b>';
+        }
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'top',
+        x: -10,
+        y: 100,
+        borderWidth: 0
+      },
+      series: [{data:data, name : 'Issues'}]
+    });
+  });
+
+</script>

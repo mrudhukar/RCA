@@ -27,8 +27,12 @@
             </ul>
           </li>
 
-          <li class="<%= 'active' if @tab == TabConstants::MEETINGS %>">
-            <%= link_to("Reports", "") %>
+          <li class="dropdown <%= 'active' if @tab == TabConstants::MEETINGS %>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reports <b class="caret"></b> </a>
+              <ul class="dropdown-menu">
+                <li> <%= link_to "Bugs Report", bug_report_reports_url %> </li>
+                <li> <%= link_to "Followups Report", followups_report_reports_url %> </li>
+              </ul>
           </li>
 
           <form class="navbar-search pull-left">

@@ -11,8 +11,9 @@
         <% end %>
       <% else %>
         <%= f.hidden_field :root_cause_id if @followup.new_record? %>
-        <%= f.input :title, :input_html => {:class => 'span4'} %>
+        <%= f.input :title, :input_html => {:class => 'span5'} %>
         <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
+        <%= f.input :user, :input_html => { :value => @followup.try(:user).try(:name) } %>
         <%= f.input :expected_date, :as => :date_picker, :input_html => { :value => @followup.expected_date } %>
       <% end %>
     </div>
@@ -23,3 +24,15 @@
     </div>
   <% end %>
 </div>
+
+
+<script>
+	$(function() {
+		var availableTags = [
+    '<%= current_team.users.collect(&:name).join("', '") %>'
+		];
+		$( "#followup_user" ).autocomplete({
+			source: availableTags
+		});
+	});
+	</script>

@@ -1,0 +1,76 @@
+<% @title = "Report of Follow-ups" %>
+
+<div class="row-fluid">
+  <div class="span12">
+      <div id="container" style="height: 450px"></div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  var x_axis = ['<%= (@x_axis.join("','")) %>'];
+  var chart;
+  
+ 	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'container',
+			type: 'column'
+		},
+		title: {
+			text: 'User - Followups Report'
+		},
+		xAxis: {
+			categories: x_axis
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Follow-ups Count'
+			},
+			stackLabels: {
+				enabled: true,
+				style: {
+					fontWeight: 'bold',
+					color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+				}
+			}
+		},
+		legend: {
+			align: 'right',
+			x: -100,
+			verticalAlign: 'top',
+			y: 20,
+			floating: true,
+			backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColorSolid) || 'white',
+			borderColor: '#CCC',
+			borderWidth: 1,
+			shadow: false
+		},
+		tooltip: {
+			formatter: function() {
+				return '<center><b> '+ this.x +' </b></center><br/><br/>'+
+					'  ' + this.series.name +':  '+ this.y +' <br/><br/>'+
+					'  ' + 'Total:  '+ this.point.stackTotal;
+			}
+		},
+		plotOptions: {
+			column: {
+				stacking: 'normal',
+				dataLabels: {
+					enabled: true,
+					color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+				}
+			}
+		},
+		series: [{
+			name: 'Finished',
+			data: <%= @finished_counts.inspect %>
+		}, {
+			name: 'Not Started',
+			data: <%= @not_started_counts.inspect %>
+		}, {
+			name: 'Scheduled',
+			data: <%= @on_going_counts.inspect %>
+		}]
+	});
+
+</script>
