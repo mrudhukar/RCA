@@ -3,7 +3,7 @@
 <div class="row-fluid">
   <div class="span12">
     <% if @followups.any? %>
-      <table class="table table-stripped diag_details white-well">
+      <table class="table table-stripped white-well">
         <% @followups.each do |followup| %>
           <tr>
             <td id="followup_entry_<%= followup.id %>">

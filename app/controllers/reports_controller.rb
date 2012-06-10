@@ -3,10 +3,14 @@ class ReportsController < ApplicationController
 
   def bug_report
     @tab = TabConstants::MEETINGS
-    data = current_team.bugs.order("created_at ASC").collect{|b| [b.created_at.strftime("%b %Y"), 1]}.group_by{|e| e[0]}
+    all_bugs = current_team.bugs.order("created_at ASC")
+    data = all_bugs.collect{|b| [b.created_at.strftime("%b %Y"), 1]}.group_by{|e| e[0]}
     #@data_array = data.group_by{|e| e[0]}.map{|k, v| [k, v.length]}
     
-    start_month = Date.new(Time.now.year, Time.now.month, 3) - 2.year
+    early_date = Date.new(Time.now.year, Time.now.month, 3) - 2.year
+    first_bug_date = all_bugs.first.created_at.to_date
+
+    start_month = (early_date > first_bug_date) ? first_bug_date : early_date
 
     @dates = []
     (0..24).each do |index|

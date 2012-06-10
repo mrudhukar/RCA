@@ -22,7 +22,7 @@
     <div class ="clearfix has-below-2" >
       <h4> Bugs </h4>
     </div>
-    <table class="table table-stripped diag_details white-well">
+    <table class="table table-stripped white-well">
       <% @bugs.each do |bug| %>
         <tr>
           <td>
@@ -37,7 +37,7 @@
       <%= link_to("New Follow up", new_team_followup_path(current_team, :root_cause_id => @root_cause.id), :remote => true, :class => "btn btn-success pull-right") %>
       <h4> Followups </h4>
     </div>
-    <table class="table table-stripped diag_details white-well">
+    <table class="table table-stripped white-well">
       <% if @followups.any? %>
       <% @followups.each do |followup| %>
         <tr>

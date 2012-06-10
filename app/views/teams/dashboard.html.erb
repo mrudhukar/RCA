@@ -8,7 +8,7 @@
     </div>
 
     <% if @bugs.any? %>
-      <table class="table table-stripped diag_details white-well">
+      <table class="table table-stripped white-well">
         <% @bugs.each do |bug| %>
           <tr>
             <td>
@@ -32,7 +32,7 @@
     </div>
 
     <% if @followups.any? %>
-      <table class="table table-stripped diag_details white-well">
+      <table class="table table-stripped white-well">
         <% @followups.each do |followup| %>
           <tr>
             <td id="followup_entry_<%= followup.id %>">
