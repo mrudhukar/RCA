@@ -2,13 +2,26 @@
 
 <div class="row-fluid">
   <%= simple_form_for @user, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+    <h3 class="has-left">My Settings</h3>
     <%= f.input :name %>
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= hidden_field_tag :settings, true %>
     <div class="form-actions">
       <%= f.submit "Update", :class => 'btn btn-primary', :disable_with => "please wait.." %>
     </div>
   <% end %>
+
+  <div class="row-fluid">
+    <%= simple_form_for current_team || Team.new(), :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+      <h3 class="has-left">My Team</h3>
+      <%= f.input :title %>
+      <%= f.input :project_id, :label => "PT Project Id" %>
+      <%= f.input :token, :label => "Your PT API token", :input_html => {:class => 'span7'} %>
+      <div class="form-actions">
+        <%= f.submit current_team ? "Update" : "Create", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+      </div>
+    <% end %>
+  </div>  
+
 </div>
