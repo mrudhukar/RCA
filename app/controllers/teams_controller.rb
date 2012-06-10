@@ -29,8 +29,15 @@ class TeamsController < ApplicationController
 
   def update
     team = current_user.teams.find(params[:id])
-    team.update_attributes!(params[:team].slice(*[:title, :token, :project_id]))
-    flash[:notice] = "Your team has been updated."
+    if params[:add_members]
+      email = params[:team][:users]
+      user = User.find_by_email(email)
+      team.users << user
+      flash[:notice] = "Member has been updated to the team."
+    else
+      team.update_attributes!(params[:team].slice(*[:title, :token, :project_id]))
+      flash[:notice] = "Your team has been updated."
+    end
     redirect_to root_path
   end
 
