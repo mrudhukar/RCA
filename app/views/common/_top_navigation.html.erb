@@ -16,7 +16,7 @@
 
           <% if current_team %>
           <li class="<%= 'active' if @tab == TabConstants::ROOT_CAUSES %>">
-            <%= link_to("Common Mistakes", root_causes_path) %>
+            <%= link_to("Common Root Causes", root_causes_path) %>
           </li>
 
           
@@ -33,6 +33,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reports <b class="caret"></b> </a>
             <ul class="dropdown-menu">
               <li> <%= link_to "Bugs Report", bug_report_reports_url %> </li>
+              <li class="divider"></li>              
               <li> <%= link_to "Followups Report", followups_report_reports_url %> </li>
             </ul>
           </li>

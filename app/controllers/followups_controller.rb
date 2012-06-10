@@ -2,7 +2,7 @@ class FollowupsController < ApplicationController
 
   def index
     @tab = TabConstants::ARCHIVE
-    @followups = current_team.followups.order("expected_date")
+    @followups = current_team.followups.order("expected_date").page(params[:page])
   end
 
   def new

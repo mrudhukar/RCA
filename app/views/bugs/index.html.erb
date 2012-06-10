@@ -4,6 +4,7 @@
 <div class="row-fluid">
   <div class="span12">
     <% if @bugs.any? %>
+      <%= paginate @bugs %>
       <table class="table table-stripped white-well">
         <% @bugs.each do |bug| %>
           <tr>

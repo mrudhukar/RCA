@@ -3,6 +3,7 @@
 <div class="row-fluid">
   <div class="span12">
     <% if @followups.any? %>
+      <%= paginate @followups %>
       <table class="table table-stripped white-well">
         <% @followups.each do |followup| %>
           <tr>

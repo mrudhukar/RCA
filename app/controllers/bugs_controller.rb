@@ -8,7 +8,7 @@ class BugsController < ApplicationController
 
   def index
     @tab = TabConstants::ARCHIVE
-    @bugs = current_team.bugs.order("created_at DESC")
+    @bugs = current_team.bugs.order("created_at DESC").page(params[:page])
   end
 
   def update

@@ -1,7 +1,8 @@
-<% @title = "Common Mistakes in #{current_team.title}" %>
+<% @title = "Common Root Causes" %>
 <div class="row-fluid">
   <div class="span12">
     <% if @root_causes.any? %>
+      <%= paginate @root_causes %>
       <table class="table table-stripped white-well">
         <% @root_causes.each do |root_cause| %>
           <tr>
