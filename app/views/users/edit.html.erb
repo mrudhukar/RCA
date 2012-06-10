@@ -12,6 +12,7 @@
     </div>
   <% end %>
 
+<% if !current_team || current_team.is_owner?(current_user) %>
   <div class="row-fluid">
     <%= simple_form_for current_team || Team.new(), :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
       <h3 class="has-left">My Team</h3>
@@ -23,5 +24,5 @@
       </div>
     <% end %>
   </div>  
-
+<% end %>
 </div>

@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
 
   def create
     team = Team.create!(params[:team].slice(*[:title, :token, :project_id]))
-    team.users << current_user
+    team.team_users.create!(:user => current_user, :admin => true)
     flash[:notice] = "Your team has been created."
     redirect_to root_path
   end

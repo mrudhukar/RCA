@@ -17,4 +17,8 @@ class Team < ActiveRecord::Base
       self.bugs.create!(:title => ptbug.name, :description => ptbug.description, :pt_id => ptbug.id, :created_at => ptbug.created_at, :labels => ptbug.labels)
     end
   end
+
+  def is_owner?(user)
+    self.team_users.find_by_user_id(user.id).admin?
+  end
 end
