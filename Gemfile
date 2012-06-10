@@ -50,6 +50,8 @@ gem 'rails_autolink', :require => 'rails_autolink'
 
 group :production do
   gem 'pg'
+  gem 'memcachier'
+  gem 'dalli'
 end
 
 gem "therubyracer"
