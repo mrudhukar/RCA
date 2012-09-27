@@ -6,11 +6,15 @@ class RootCausesController < ApplicationController
   end
 
   def create
-    @root_cause = current_team.root_causes.create!(params[:root_cause].slice(*[:title, :description]))
+    @root_cause = nil
+    if !params[:root_cause_id].blank?
+      @root_cause = current_team.root_causes.find_by_id(params[:root_cause_id])
+    else
+      @root_cause = current_team.root_causes.create!(params[:root_cause].slice(*[:title, :description]))
+    end
+    
     @bug = current_team.bugs.find(params[:bug_id])
     @root_cause.bugs << @bug
-    flash[:notice] = "Root Cause has been successfully created"
-    redirect_to team_bug_path(current_team, @bug)
   end
 
   def edit
@@ -43,4 +47,9 @@ class RootCausesController < ApplicationController
 		@followups= @root_cause.followups
   end
 
+  def suggest
+    bug = current_team.bugs.find_by_id(params[:bug_id])
+    exclude_root_causes = bug.present? ? bug.root_causes.collect(&:id) : []
+    @suggestions = RootCause.suggestions(params[:title_query], current_team.root_causes.collect(&:id) - exclude_root_causes)
+  end
 end

@@ -39,7 +39,12 @@ Rca::Application.routes.draw do
 
   resources :users
   resources :user_sessions
-  resources :root_causes
+
+  resources :root_causes do
+    collection do
+      post 'suggest'
+    end
+  end
 
   resources :reports do
     collection do

@@ -38,7 +38,7 @@
       </ul>
 
     <% else %>
-      <%= link_to("Update RC", add_rca_team_bug_path(current_team, bug), :remote => true, :class => "btn btn-mini btn-success") %>
+      <%= link_to("Do RCA", team_bug_path(current_team, bug), :class => "btn btn-mini btn-success") %>
       <button class="btn btn-mini btn-success dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
       <ul class="dropdown-menu">
         <li><%= link_to((content_tag(:i,"", :class => "icon-check") + " Mark RCA Done").html_safe, team_bug_path(current_team, bug, :mark_done => true), :method => :put) %></li>

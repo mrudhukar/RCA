@@ -34,27 +34,7 @@
     </div>
   </div>
 
-  <div class="well">
-    <div class="clearfix has-below-2">
-      <%= link_to("Update Root Causes", add_rca_team_bug_path(current_team, @bug), :remote => true, :class => "btn btn-primary pull-right") unless @bug.ignored? || @bug.rca_done? %>
-      <h4>Root Causes</h4>
-    </div>
-    <div>
-      <% if @bug.has_root_cause? %>
-      <table class="table table-stripped white-well">
-        <% @root_causes.each do |root_cause| %>
-          <tr>
-            <td>
-              <%= render :partial => "root_causes/root_cause", :locals => {:root_cause => root_cause} %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-     <% else %>
-			<div class="well white-well empty_content">
-        You have not added any root causes. <%= link_to("Click here", add_rca_team_bug_path(current_team, @bug), :remote => true)%> to add.
-      </div>
-     <%end%>
-		</div>
+  <div id="causes_list" class="well">
+    <%= render :partial => "bugs/root_causes", :locals => {:root_causes => @root_causes} %>
   </div>
 </div>

@@ -1,0 +1,8 @@
+<% if suggestions.count > 0 %>
+  <div>
+    <h4> Check if ROOT CAUSE is already present </h4>
+    <% suggestions.each do |rc| %>
+      <%= link_to_function rc.title, "Suggestions.selected('#{escape_javascript(rc.title)}', '#{rc.id}');" %> <br/>
+    <% end %>
+  </div>
+<% end %>

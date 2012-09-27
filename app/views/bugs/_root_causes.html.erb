@@ -1,0 +1,20 @@
+<div class="clearfix has-below-2">
+  <h4>Causes</h4>
+</div>
+<div>
+  <% if @bug.has_root_cause? %>
+    <table class="table table-stripped white-well">
+      <% root_causes.each do |root_cause| %>
+        <tr>
+          <td id="root_cause_entry_<%= root_cause.id %>">
+            <%= render :partial => "root_causes/root_cause", :locals => {:root_cause => root_cause} %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+  <div id="add_cause_form_container" style="display:none;"> </div>
+  <div id="add_cause_link">
+    <%= link_to("Add Cause", new_root_cause_path(:bug_id => @bug.id), :remote => true)%>
+  </div>
+</div>

@@ -1,18 +1,51 @@
-<div id="new_root_cause" class="modal hide fade in">
-  <div class="modal-header">
-    <button class="close" data-dismiss="modal">×</button>
-    <h3>Add New Root Causes</h3>
+<div id="new_root_cause" class="fade in">
+  
+  <div class="header">
+    <h3>Add Root Cause</h3>
   </div>
-  <%= simple_form_for @root_cause, :validate => true, :html => {:class => 'form-vertical' } do |f| %>
-    <div class="modal-body">
+
+  <%= simple_form_for @root_cause, :validate => true, :remote => true, :html => {:class => 'form-vertical', :id =>"new_root_cause_form" } do |f| %>
+    <div class="body">
       <%= hidden_field_tag(:bug_id, @bug.id) if @bug %>
-      <%= f.input :title, :input_html => {:class => 'span4'} %>
-      <%= f.input :description, :input_html => {:class => 'span5', :rows => 5} %>
+      <%= hidden_field_tag(:root_cause_id, nil) %>
+      <%= f.input :title, :input_html => {:class => 'input-xxlarge', :autocomplete => "off", :id =>"new_root_cause_title", :onkeyup => "Suggestions.refresh('#{suggest_root_causes_url}')", :placeholder => "Title"}, :label => false %>
     </div>
 
-    <div class="modal-footer form-actions">
-      <%= f.submit  @bug ? "Add RCA" : "Save", :class => 'btn btn-primary', :disable_with => "please wait.." %>
-      <%= link_to("Cancel", "#", :class => "btn", :data => {:dismiss => "modal"}) %>
+    <div id="suggestions_container"></div>
+
+    <%= f.input :description, :input_html => {:class => 'input-xxlarge', :rows => 5}, :label => false, :placeholder => "Description"  %>
+
+    <div class="form-actions" style="padding-left: 0px;">
+      <%= f.submit  @bug ? "Add Cause" : "Save", :class => 'btn btn-primary', :disable_with => "please wait..", :id => "add_cause_submit" %>
+      <%= link_to_function("Cancel", "$('#add_cause_form_container').hide();$('#add_cause_link').show();", :class => "btn") %>
     </div>
   <% end %>
 </div>
+
+<script>
+  var Suggestions = {
+    xhr: null,
+
+    refresh: function(url){
+      var params = {
+        format: 'js',
+        title_query: jQuery('#new_root_cause_title').val(),
+        bug_id: jQuery('#bug_id').val()
+      }
+      if(this.xhr && this.xhr.readyState != 4){
+        this.xhr.abort();
+      }
+      this.xhr = jQuery.ajax({
+        url: url,
+        data: jQuery.param(params),
+        type: 'POST'
+      });
+    },
+
+    selected: function(title, id){
+      jQuery('#new_root_cause_title').val(title);
+      jQuery('#root_cause_id').val(id);
+      jQuery('#add_cause_submit').click();
+    }
+  }
+</script>
