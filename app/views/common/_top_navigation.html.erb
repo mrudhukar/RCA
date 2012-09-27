@@ -58,9 +58,6 @@
                 <li class="divider"></li>
                 <li><%= link_to "View all", root_path() %></li>
               <% end %>
-
-              <li class="divider"></li>
-              <li><%= link_to "New Projects", new_team_path() %></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -72,8 +69,8 @@
             </ul>
           </li>
         <% else %>
-          <li><%= link_to("Sign Up", new_user_path()) %></li>
-          <li class="divider-vertical"></li>
+          <!-- <li><%= link_to("Sign Up", new_user_path()) %></li>
+          <li class="divider-vertical"></li> -->
           <li><%= link_to("Login", new_user_session_path()) %></li>
         <% end %>
       </ul>

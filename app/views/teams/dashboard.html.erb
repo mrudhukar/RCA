@@ -2,7 +2,7 @@
 
 <div class="row-fluid">
   <% if current_user.teams.empty? %>
-    <div class="well">You donot belong to any teams. <%= link_to("Click here", new_team_path()) %> to create one</div>
+    <div class="well"><%= link_to("Click here", refresh_teams_teams_path()) %> to pull your projects</div>
   <% else %>
     <% current_user.teams.each do |team| %>
       <div class="well clearfix">
@@ -30,5 +30,6 @@
       </div>
     <% end %>
 
+    <%= link_to("Pull your projects", refresh_teams_teams_path(), class: "btn btn-primary") %>
   <% end %>
 </div>

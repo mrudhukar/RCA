@@ -13,7 +13,8 @@ class Followup < ActiveRecord::Base
   belongs_to :root_cause
   belongs_to :user
 
-  validates :root_cause, :title, :user, :presence => true
+  validates :user, :presence => {:on => :create}
+  validates :root_cause, :title, :presence => true
   validates :status, :inclusion => {:in => Status.all}
 
   scope :not_completed, where(:status => [Status::NOT_STARTED, Status::SCHEDULED, Status::STARTED])

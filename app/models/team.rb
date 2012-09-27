@@ -7,10 +7,11 @@ class Team < ActiveRecord::Base
 
   has_many :bugs, :dependent => :destroy
 
-  validates :title, :project_id, :token, :presence => true
+  validates :title, :project_id, :presence => true
+  validates :project_id, :uniqueness => true
 
-  def pull_bugs
-    PivotalTracker::Client.token = self.token
+  def pull_bugs(token)
+    PivotalTracker::Client.token = token
     project = PivotalTracker::Project.find(self.project_id)
 
     rca_bugs = project.stories.all(:label => self.label, :story_type => self.story_type.downcase.split(",").collect(&:strip), :includedone => true)
@@ -20,8 +21,21 @@ class Team < ActiveRecord::Base
     end
   end
 
+  def pull_users(token)
+    PivotalTracker::Client.token = token
+    project = PivotalTracker::Project.find(self.project_id)
+    project.memberships.all.each do |mem|
+      u = User.find_by_email(mem.email) || User.create!(name: mem.name, email: mem.email)
+      self.team_users.create!(:user => u) unless self.users.find_by_id(u.id)
+    end
+  end
+
   def is_owner?(user)
-    self.team_users.find_by_user_id(user.id).admin?
+    get_team_user(user).admin?
+  end
+
+  def get_team_user(user)
+    self.team_users.find_by_user_id(user.id)
   end
 
   def bugs_for_rca
