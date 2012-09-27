@@ -8,7 +8,7 @@
       <%= hidden_field_tag(:rca, true)%>
       <div class="has-below-1" style="max-height: 100px;orverflow-y:scroll;">
         <ul class="unstyled">
-          <% RootCause.all.each do |rc| %>
+          <% current_team.root_causes.all.each do |rc| %>
             <li>
               <%= check_box_tag "rcs[]", rc.id, @root_causes.collect(&:id).include?(rc.id) %>
               <%= rc.title %>

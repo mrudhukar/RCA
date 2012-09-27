@@ -22,7 +22,13 @@ class ApplicationController < ActionController::Base
   end
 
   def current_team
-    current_user.teams.first
+    return @current_team if defined?(@current_team)
+    @current_team = current_user.teams.find_by_id(session[:team_id])
+  end
+
+  def set_current_team(team)
+    session[:team_id] = team.id
+    @current_team = team
   end
 
   def require_login

@@ -1,0 +1,10 @@
+<div class="row-fluid">
+  <%= simple_form_for @team || Team.new(), :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+    <%= f.input :title %>
+    <%= f.input :project_id, :label => "PT Project Id" %>
+    <%= f.input :token, :label => "Your PT API token", :input_html => {:class => 'span7'} %>
+    <div class="form-actions">
+      <%= f.submit @team ? "Update" : "Create", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+    </div>
+  <% end %>
+</div>

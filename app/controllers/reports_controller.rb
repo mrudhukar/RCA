@@ -22,7 +22,7 @@ class ReportsController < ApplicationController
   def followups_report
     @tab = TabConstants::MEETINGS
 
-    users = User.all(:include => :followups)
+    users = current_team.users.all(:include => :followups)
     @x_axis = users.collect(&:name)
 
     @finished_counts = []

@@ -6,7 +6,7 @@ class FollowupsController < ApplicationController
   end
 
   def new
-    @root_cause = RootCause.find(params[:root_cause_id])
+    @root_cause = current_team.root_causes.find(params[:root_cause_id])
     @followup = current_team.followups.new(:root_cause => @root_cause)
   end
 

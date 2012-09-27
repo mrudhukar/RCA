@@ -2,7 +2,9 @@ class Team < ActiveRecord::Base
   has_many :team_users, :dependent => :destroy
   has_many :users, :through => :team_users
 
-  has_many :followups, :dependent => :destroy
+  has_many :root_causes, :dependent => :destroy
+  has_many :followups, :through => :root_causes
+
   has_many :bugs, :dependent => :destroy
 
   validates :title, :project_id, :token, :presence => true

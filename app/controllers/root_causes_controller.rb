@@ -2,11 +2,11 @@ class RootCausesController < ApplicationController
 
   def new
     @bug = current_team.bugs.find(params[:bug_id])
-    @root_cause = RootCause.new()
+    @root_cause = current_team.root_causes.new()
   end
 
   def create
-    @root_cause = RootCause.create!(params[:root_cause].slice(*[:title, :description]))
+    @root_cause = current_team.root_causes.create!(params[:root_cause].slice(*[:title, :description]))
     @bug = current_team.bugs.find(params[:bug_id])
     @root_cause.bugs << @bug
     flash[:notice] = "Root Cause has been successfully created"
@@ -14,18 +14,18 @@ class RootCausesController < ApplicationController
   end
 
   def edit
-    @root_cause = RootCause.find(params[:id])
+    @root_cause = current_team.root_causes.find(params[:id])
   end
 
   def update
-    root_cause = RootCause.find(params[:id])
+    root_cause = current_team.root_causes.find(params[:id])
     root_cause.update_attributes!(params[:root_cause].slice(*[:title, :description]))
     flash[:notice] = "Root Cause has been successfully updated"
     redirect_to root_cause_path(root_cause)
   end
 
   def destroy
-    root_cause = RootCause.find(params[:id])
+    root_cause = current_team.root_causes.find(params[:id])
     root_cause.destroy
     flash[:notice] = "Root Cause has been successfully deleted"
     redirect_to root_causes_path()
@@ -33,12 +33,12 @@ class RootCausesController < ApplicationController
 
   def index
     @tab = TabConstants::ROOT_CAUSES
-    @root_causes = RootCause.order("root_cause_bugs_count DESC").page(params[:page])
+    @root_causes = current_team.root_causes.order("root_cause_bugs_count DESC").page(params[:page]).per(10)
   end
 
   def show
     @tab = TabConstants::ROOT_CAUSES
-    @root_cause = RootCause.find(params[:id])
+    @root_cause = current_team.root_causes.find(params[:id])
 		@bugs= @root_cause.bugs
 		@followups= @root_cause.followups
   end

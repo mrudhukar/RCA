@@ -1,52 +1,5 @@
-<% @title = current_team.title + " dashboard" %>
+<% @title = "My Teams" %>
 
 <div class="row-fluid">
-  <div class="span6 well">
-    <div class="has-below-1">
-      <%= link_to("Update Bugs", refresh_team_path(current_team), :class => "btn pull-right")%>
-      <h3>Bugs for RCA</h3>
-    </div>
-
-    <% if @bugs.any? %>
-      <table class="table table-stripped white-well">
-        <% @bugs.each do |bug| %>
-          <tr>
-            <td>
-              <%= render :partial => "bugs/bug", :locals => {:bug => bug, :full => false, :actions => true} %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    <% else %>
-      <div class="well white-well empty_content">
-        There are no bugs imported from PT for which RCA is pending. <%= link_to("Click here", refresh_team_path(current_team))%> to refresh the list.
-      </div>
-
-    <% end %>
-
-  </div>
-
-  <div class="span6 well">
-    <div class="has-below-1">
-      <h3>Unresolved Follow ups</h3>
-    </div>
-
-    <% if @followups.any? %>
-      <table class="table table-stripped white-well">
-        <% @followups.each do |followup| %>
-          <tr>
-            <td id="followup_entry_<%= followup.id %>">
-              <%= render :partial => "followups/followup", :locals => {:followup => followup, :actions => true} %>
-            </td>
-          </tr>
-        <% end %>
-      </table>
-    <% else %>
-      <div class="well white-well empty_content">
-        Yay! There are no follow ups to be taken. Go and do RCA!!
-      </div>
-
-    <% end %>
-
-  </div>
+  
 </div>

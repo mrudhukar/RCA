@@ -1,0 +1,23 @@
+<% @title = @team.title %>
+
+<%= render partial: "teams/form" %>
+
+<div class="row-fluid">
+  <%= simple_form_for @team, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+    <h3 class="has-left"><%= @team.title %> members</h3>
+
+    <ul class="has-above-1 has-below-1">
+      <% @team.users.each do |u|%>
+        <li>
+          <%= u.name %> (<%= u.email%>)  <%= link_to("Remove", "") unless @team.is_owner?(current_user) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= f.input :users, :label => "Email", :input_html => { :value => nil }, :required => true %>
+    <%= hidden_field_tag :add_members, true %>
+    <div class="form-actions">
+      <%= f.submit "Add Member", :class => 'btn btn-primary', :disable_with => "please wait.." %>
+    </div>
+  <% end %>
+</div>

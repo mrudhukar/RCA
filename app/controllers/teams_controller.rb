@@ -1,23 +1,35 @@
 class TeamsController < ApplicationController
   skip_before_filter :require_login, :only => [:dashboard]
+
+  before_filter :fetch_team, only: [:refresh, :show, :team, :edit, :update]
+
   def dashboard
     unless current_user
       redirect_to welcome_path() 
       return
     end
 
-    if current_team
-      @bugs = current_team.bugs.not_rcaed.not_ignored.order("created_at DESC")
-      @followups = current_team.followups.not_completed.order("expected_date")
+    if current_user.teams.size != 1
+      @teams = current_user.teams
     else
-      redirect_to edit_user_path(current_user)
+      redirect_to team_path(current_user.teams.first)
     end
   end
 
   def refresh
-    current_team.pull_bugs
+    @team.pull_bugs
     flash[:notice] = "Import from PT has been successful"
     redirect_to request.referer
+  end
+
+  def show
+    set_current_team(@team)
+    @bugs = @team.bugs.not_rcaed.not_ignored.order("created_at DESC")
+    @followups = @team.followups.not_completed.order("expected_date")
+  end
+
+  def new
+    team = Team.new()
   end
 
   def create
@@ -27,8 +39,13 @@ class TeamsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    raise unless @team.is_owner?(current_user)
+  end
+
   def update
-    team = current_user.teams.find(params[:id])
+    raise unless @team.is_owner?(current_user)
+    team = @team
     if params[:add_members]
       email = params[:team][:users]
       user = User.find_by_email(email)
@@ -39,6 +56,12 @@ class TeamsController < ApplicationController
       flash[:notice] = "Your team has been updated."
     end
     redirect_to root_path
+  end
+
+  private
+
+  def fetch_team
+    @team = current_user.teams.find(params[:id])
   end
 
 end
