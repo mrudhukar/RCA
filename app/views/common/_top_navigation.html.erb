@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to("RCA Made Easy", root_path, :class => "brand")%>
+      <%= link_to("RCA Made Easy" + (current_team.present? ? " - #{current_team.title}" : ""), root_path, :class => "brand")%>
 
       <% if current_user %>
         <ul class="nav">
@@ -15,28 +15,27 @@
           </li>
 
           <% if current_team %>
-          <li class="<%= 'active' if @tab == TabConstants::ROOT_CAUSES %>">
-            <%= link_to("Common Root Causes", root_causes_path) %>
-          </li>
+            <li class="<%= 'active' if @tab == TabConstants::ROOT_CAUSES %>">
+              <%= link_to("Common Root Causes", root_causes_path) %>
+            </li>
+            
+            <li class="dropdown <%= 'active' if @tab == TabConstants::ARCHIVE %>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Archived <b class="caret"></b> </a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "All Bugs", team_bugs_path(current_team) %></li>
+                <li class="divider"></li>
+                <li><%= link_to "All Follow-ups", team_followups_path(current_team) %></li>
+              </ul>
+            </li>
 
-          
-          <li class="dropdown <%= 'active' if @tab == TabConstants::ARCHIVE %>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Archived <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "All Bugs", team_bugs_path(current_team) %></li>
-              <li class="divider"></li>
-              <li><%= link_to "All Follow-ups", team_followups_path(current_team) %></li>
-            </ul>
-          </li>
-
-          <li class="dropdown <%= 'active' if @tab == TabConstants::MEETINGS %>">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reports <b class="caret"></b> </a>
-            <ul class="dropdown-menu">
-              <li> <%= link_to "Bugs Report", bug_report_reports_url %> </li>
-              <li class="divider"></li>              
-              <li> <%= link_to "Followups Report", followups_report_reports_url %> </li>
-            </ul>
-          </li>
+            <li class="dropdown <%= 'active' if @tab == TabConstants::MEETINGS %>">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Reports <b class="caret"></b> </a>
+              <ul class="dropdown-menu">
+                <li> <%= link_to "Bugs Report", bug_report_reports_url %> </li>
+                <li class="divider"></li>              
+                <li> <%= link_to "Followups Report", followups_report_reports_url %> </li>
+              </ul>
+            </li>
           <% end %>
 
           <form class="navbar-search pull-left">
@@ -48,14 +47,20 @@
       <ul class="nav pull-right">
         <% if current_user %>
           <li class="dropdown">
-            <%= link_to(('My Teams <b class="caret"></b>').html_safe, "#", :class => "dropdown-toggle", :data => {:toggle => "dropdown"}) %>
+            <%= link_to(('My Projects <b class="caret"></b>').html_safe, "#", :class => "dropdown-toggle", :data => {:toggle => "dropdown"}) %>
             
             <ul class="dropdown-menu">
               <% current_user.teams.each do |team| %>
                 <li><%= link_to team.title, team_path(team) %></li>
               <% end %>
+
+              <% if current_user.teams.size != 1 %>
+                <li class="divider"></li>
+                <li><%= link_to "View all", root_path() %></li>
+              <% end %>
+
               <li class="divider"></li>
-              <li><%= link_to "New Team", new_team_path() %></li>
+              <li><%= link_to "New Projects", new_team_path() %></li>
             </ul>
           </li>
           <li class="dropdown">

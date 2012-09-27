@@ -23,4 +23,12 @@ class Team < ActiveRecord::Base
   def is_owner?(user)
     self.team_users.find_by_user_id(user.id).admin?
   end
+
+  def bugs_for_rca
+    self.bugs.not_rcaed.not_ignored.order("created_at DESC")
+  end
+
+  def pending_follups
+    self.followups.not_completed.order("expected_date")
+  end
 end

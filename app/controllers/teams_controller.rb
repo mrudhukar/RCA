@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
     end
 
     if current_user.teams.size != 1
-      @teams = current_user.teams
+      session[:team_id] = nil
     else
       redirect_to team_path(current_user.teams.first)
     end
@@ -24,8 +24,8 @@ class TeamsController < ApplicationController
 
   def show
     set_current_team(@team)
-    @bugs = @team.bugs.not_rcaed.not_ignored.order("created_at DESC")
-    @followups = @team.followups.not_completed.order("expected_date")
+    @bugs = @team.bugs_for_rca
+    @followups = @team.pending_follups
   end
 
   def new
