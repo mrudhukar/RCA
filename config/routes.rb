@@ -24,6 +24,7 @@ Rca::Application.routes.draw do
     end
     member do
       get 'refresh'
+      get 'refresh_members'
     end
     resources :bugs do
       member do
@@ -38,7 +39,11 @@ Rca::Application.routes.draw do
   end
 
   resources :users
-  resources :user_sessions
+  resources :user_sessions do
+    collection do
+      post 'pt_login'
+    end
+  end
   resources :root_causes
 
   resources :reports do

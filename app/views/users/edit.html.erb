@@ -4,9 +4,11 @@
   <%= simple_form_for @user, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
     <h3 class="has-left">My Settings</h3>
     <%= f.input :name %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :password %>
-    <%= f.input :password_confirmation %>
+    <% if @user.token.nil? %>
+      <%= f.input :email, :required => true %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+    <% end %>
     <div class="form-actions">
       <%= f.submit "Update", :class => 'btn btn-primary', :disable_with => "please wait.." %>
     </div>

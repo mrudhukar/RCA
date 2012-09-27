@@ -2,11 +2,12 @@
 <% @page_action = {name: "Login", url: new_user_session_path()} %>
 
 <div class="row-fluid">
-<%= simple_form_for @user, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
+<%= simple_form_for @user || User.new, :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
   <%= f.input :name %>
   <%= f.input :email, :required => true %>
   <%= f.input :password, :required => true %>
   <%= f.input :password_confirmation, :required => true %>
+  <input type="hidden" value="pt" name="type"/>
 
   <div class="control-group check_boxes required">
     <label class="control-label">
