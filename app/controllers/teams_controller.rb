@@ -8,12 +8,7 @@ class TeamsController < ApplicationController
       redirect_to welcome_path() 
       return
     end
-
-    if current_user.teams.size != 1
-      session[:team_id] = nil
-    else
-      redirect_to team_path(current_user.teams.first)
-    end
+    session[:team_id] = nil
   end
 
   def refresh

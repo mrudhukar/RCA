@@ -11,7 +11,7 @@
       <% if current_user %>
         <ul class="nav">
           <li class="<%= 'active' if @tab.nil? || @tab == TabConstants::HOME %>">
-            <%= link_to("Home", root_path) %>
+            <%= link_to("Home", current_team ? team_path(current_team) : root_path) %>
           </li>
 
           <% if current_team %>

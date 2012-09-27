@@ -11,13 +11,16 @@ class Followup < ActiveRecord::Base
   end
 
   belongs_to :root_cause
-  belongs_to :team
   belongs_to :user
 
-  validates :root_cause, :team, :title, :user, :presence => true
+  validates :root_cause, :title, :user, :presence => true
   validates :status, :inclusion => {:in => Status.all}
 
   scope :not_completed, where(:status => [Status::NOT_STARTED, Status::SCHEDULED, Status::STARTED])
+
+  def team
+    self.root_cause.team
+  end
 
   def add_pt_story
     PivotalTracker::Client.token = self.team.token

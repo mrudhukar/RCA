@@ -13,7 +13,7 @@ class Team < ActiveRecord::Base
     PivotalTracker::Client.token = self.token
     project = PivotalTracker::Project.find(self.project_id)
 
-    rca_bugs = project.stories.all(:label => 'rca', :story_type => ['bug'], :includedone => true)
+    rca_bugs = project.stories.all(:label => self.label, :story_type => self.story_type.downcase.split(",").collect(&:strip), :includedone => true)
     rca_bugs.each do |ptbug|
       self.bugs.find_by_pt_id(ptbug.id) || 
       self.bugs.create!(:title => ptbug.name, :description => ptbug.description, :pt_id => ptbug.id, :created_at => ptbug.created_at, :labels => ptbug.labels)
