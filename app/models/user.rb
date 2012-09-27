@@ -27,4 +27,14 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  def pull_teams
+    PivotalTracker::Client.token = self.token
+    projects = PivotalTracker::Project.all.select{|p| !p.use_https}
+
+    projects.each do |pr|
+      team = Team.find_by_project_id(pr.id) || Team.create!(title: pr.name, project_id: pr.id)
+      team.team_users.create!(:user => self) unless team.get_team_user(self)
+    end
+  end
+
 end

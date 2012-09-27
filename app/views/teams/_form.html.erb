@@ -1,7 +1,7 @@
 <div class="row-fluid">
   <%= simple_form_for @team || Team.new(), :validate => true, :html => { :class => 'form-horizontal span7 well' } do |f| %>
-    <%= f.input :title %>
-    <%= f.input :project_id, :label => "PT Project Id" %>
+    <%= f.input :title, :disabled => true %>
+    <%= f.input :project_id, :label => "PT Project Id", :disabled => true %>
     <%= f.input :label, :label => "PT Label to pull" %>
     <%= f.input :story_type, :label => "PT Story Types to pull" %>
     <div class="form-actions">

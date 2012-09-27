@@ -11,6 +11,15 @@ class TeamsController < ApplicationController
     session[:team_id] = nil
   end
 
+  def refresh_teams
+    current_user.pull_teams
+    current_user.teams.each do |team|
+      puts team.title
+      team.pull_users(current_user.token)
+    end
+    redirect_to root_path
+  end
+
   def refresh
     @team.pull_bugs(current_user.token)
     flash[:notice] = "Import from PT has been successful"
@@ -29,25 +38,23 @@ class TeamsController < ApplicationController
     @followups = @team.pending_follups
   end
 
-  def new
-    team = Team.new()
-  end
+  # def new
+  #   team = Team.new()
+  # end
 
-  def create
-    team = Team.create!(params[:team].slice(*[:title, :token, :project_id]))
-    team.team_users.create!(:user => current_user, :admin => true)
-    flash[:notice] = "Your team has been created."
-    redirect_to root_path
-  end
+  # def create
+  #   team = Team.create!(params[:team].slice(*[:title, :token, :project_id]))
+  #   team.team_users.create!(:user => current_user, :admin => true)
+  #   flash[:notice] = "Your project has been created."
+  #   redirect_to root_path
+  # end
 
   def edit
-    raise unless @team.is_owner?(current_user)
   end
 
   def update
-    raise unless @team.is_owner?(current_user)
-    @team.update_attributes!(params[:team].slice(*[:title, :token, :project_id]))
-    flash[:notice] = "Your team has been updated."
+    @team.update_attributes!(params[:team].slice(*[:label, :story_type]))
+    flash[:notice] = "Your project has been updated."
     redirect_to root_path
   end
 

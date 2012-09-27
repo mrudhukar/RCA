@@ -21,6 +21,7 @@ Rca::Application.routes.draw do
   resources :teams do
     collection do
       get 'dashboard'
+      get 'refresh_teams'
     end
     member do
       get 'refresh'

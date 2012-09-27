@@ -8,6 +8,7 @@ class Team < ActiveRecord::Base
   has_many :bugs, :dependent => :destroy
 
   validates :title, :project_id, :presence => true
+  validates :project_id, :uniqueness => true
 
   def pull_bugs(token)
     PivotalTracker::Client.token = token
