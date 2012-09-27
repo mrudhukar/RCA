@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <%= link_to("RCA Made Easy" + (current_team.present? ? " - #{current_team.title}" : ""), root_path, :class => "brand")%>
+      <%= link_to("RCA Made Easy" + (!current_user && current_team.present? ? " - #{current_team.title}" : ""), root_path, :class => "brand")%>
 
       <% if current_user %>
         <ul class="nav">
