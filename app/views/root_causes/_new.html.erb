@@ -4,20 +4,21 @@
     <h3>Add Root Cause</h3>
   </div>
 
-  <%= simple_form_for @root_cause, :validate => true, :remote => true, :html => {:class => 'form-vertical', :id =>"new_root_cause_form" } do |f| %>
+  <%= simple_form_for @root_cause, :validate => true, :remote => true, :html => {:class => 'form-vertical', :id =>"new_root_cause_form", :onsubmit => "jQuery('#new_cause_form_loader').show();" } do |f| %>
     <div class="body">
       <%= hidden_field_tag(:bug_id, @bug.id) if @bug %>
       <%= hidden_field_tag(:root_cause_id, nil) %>
       <%= f.input :title, :input_html => {:class => 'input-xxlarge', :autocomplete => "off", :id =>"new_root_cause_title", :onkeyup => "Suggestions.refresh('#{suggest_root_causes_url}')", :placeholder => "Title"}, :label => false %>
     </div>
 
-    <div id="suggestions_container"></div>
+    <div id="suggestions_container" class="input-xxlarge"></div>
 
     <%= f.input :description, :input_html => {:class => 'input-xxlarge', :rows => 5}, :label => false, :placeholder => "Description"  %>
 
     <div class="form-actions" style="padding-left: 0px;">
       <%= f.submit  @bug ? "Add Cause" : "Save", :class => 'btn btn-primary', :disable_with => "please wait..", :id => "add_cause_submit" %>
       <%= link_to_function("Cancel", "$('#add_cause_form_container').hide();$('#add_cause_link').show();", :class => "btn") %>
+      <%= image_tag('ajax-loader.gif', :class => 'form_loader', :id => 'new_cause_form_loader', :style => "display:none; width: 22px; margin-left: 10px;") %>
     </div>
   <% end %>
 </div>
@@ -46,6 +47,7 @@
       jQuery('#new_root_cause_title').val(title);
       jQuery('#root_cause_id').val(id);
       jQuery('#add_cause_submit').click();
+      jQuery('#suggestion_entry_link_' + id + ' .loader').show();
     }
   }
 </script>
