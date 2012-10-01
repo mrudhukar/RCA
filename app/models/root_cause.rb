@@ -28,9 +28,8 @@ class RootCause < ActiveRecord::Base
           query do
               string "#{query}*", :default_operator => 'OR', :analyze_wildcard => true
           end
-
-          filter :terms, :id => list_of_rc_to_include || []
         end
+        filter :terms, :id => list_of_rc_to_include || []
       end
 
       return r
