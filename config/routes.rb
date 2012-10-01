@@ -40,12 +40,18 @@ Rca::Application.routes.draw do
   end
 
   resources :users
+
   resources :user_sessions do
     collection do
       post 'pt_login'
     end
   end
-  resources :root_causes
+
+  resources :root_causes do
+    collection do
+      post 'suggest'
+    end
+  end
 
   resources :reports do
     collection do

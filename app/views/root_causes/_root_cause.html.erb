@@ -22,6 +22,5 @@
         <%= link_to((content_tag(:i,"", :class => "icon-trash") + " Remove").html_safe, team_bug_path(current_team, @bug, :rca => true, :root_cause_id => root_cause.id), :method => :put, :confirm => "Are you sure you want to remove this root cause for this bug?") %>
       </li>
     </ul>
-
   <% end %>
 </div>

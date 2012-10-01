@@ -1,0 +1,2 @@
+$('#causes_list').html("<%= escape_javascript(render(:partial => "bugs/root_causes", :locals => {:root_causes => @bug.root_causes})) %>")
+$('#root_cause_entry_<%= @root_cause.id %>').effect("highlight", {}, 3000);

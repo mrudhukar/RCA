@@ -1,0 +1,43 @@
+<% if suggestions.count > 0 %>
+  <div>
+    <h5> Check if 'Root Cause' is already present! </h5>
+    <% suggestions.each do |rc| %>
+      <% content =  image_tag('arrow.png', :class => 'arrow') + rc.title + image_tag('ajax-loader.gif', :class => 'loader', :style => "display:none;") %>
+      <%= link_to_function content, "Suggestions.selected('#{escape_javascript(rc.title)}', '#{rc.id}');", :class => "suggestion_entry", :id => "suggestion_entry_link_#{rc.id}" %>
+    <% end %>
+  </div>
+<% end %>
+
+<style>
+  #suggestions_container{
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0px 0px 10px;
+  }
+
+  #suggestions_container h5{
+    padding: 5px;
+    text-align: center;
+  }
+
+  #suggestions_container .suggestion_entry{
+    padding: 5px;
+    display: block;
+    border-top: 1px solid #ccc;
+    text-decoration:none;
+  }
+
+  #suggestions_container .suggestion_entry .arrow{
+    margin-right: 5px;
+  }
+
+  #suggestions_container .suggestion_entry .loader{
+    width: 16px;
+    margin-left: 10px;
+  }
+
+  #suggestions_container .suggestion_entry:hover{
+    -webkit-box-shadow: 3px 3px 5px #999;
+     box-shadow: 3px 3px 5px #999;
+  }
+</style>

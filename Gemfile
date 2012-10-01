@@ -28,7 +28,7 @@ gem "cancan"
 
 gem 'simple_form'
 gem 'kaminari'
-
+gem "tire"
 gem "recaptcha", :require => "recaptcha/rails"
 gem 'exception_notification', :require => 'exception_notifier'
 # To use ActiveModel has_secure_password
