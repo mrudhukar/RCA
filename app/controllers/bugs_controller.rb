@@ -34,7 +34,7 @@ class BugsController < ApplicationController
       @bug.root_causes = current_team.root_causes.find(params[:rcs])
       flash[:notice] = "The root causes have been updated for the bug"
     else
-      current_team.root_causes.find_by_bug_id_and_root_cause_id(@bug.id, params[:root_cause_id]).destroy
+      @bug.root_cause_bugs.find_by_root_cause_id(params[:root_cause_id]).destroy
       flash[:notice] = "The root cause has been removed for the bug"
     end
     redirect_to request.referer
