@@ -1,1 +1,7 @@
 $('#suggestions_container').html("<%= escape_javascript(render :partial => 'root_causes/suggestions', :locals => {:suggestions => @suggestions})%>")
+
+<% if @suggestions.count > 0 %>
+  $('#suggestions_container').show();
+<% else  %>
+  $('#suggestions_container').hide();
+<% end %>
