@@ -24,6 +24,11 @@
     <p>&copy; Chronus 2012</p>
   </footer>
   <div id="modal_popup_container"></div>
+  <script type="text/javascript">var _kiq = _kiq || [];</script>
+  <script type="text/javascript" src="//s3.amazonaws.com/ki.js/43840/8yq.js" async="true"></script>
 
+  <% if current_user %>
+    <script type="text/javascript" charset="utf-8">  _kiq.push(['identify', '<%= escape_javascript(current_user.name) %>']); </script>
+  <% end %>
 </body>
 </html>
