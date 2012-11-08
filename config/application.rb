@@ -62,5 +62,7 @@ module Rca
     config.assets.initialize_on_precompile = false
 
     config.action_mailer.default_url_options = {:host => ENV['SITE_URL'] || "localhost:3000"}
+
+    config.autoload_paths += Dir["#{config.root}/lib/"]
   end
 end
