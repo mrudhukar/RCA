@@ -1,0 +1,15 @@
+You have <%= @not_completed_followups.count %> rca followup pending
+<br/>
+<br/>
+
+<% @not_completed_followups.each do |followup| %>
+	<b><%= followup.title %></b>
+	<br/>
+	<%= followup.description %>
+	<br/>
+	<%= link_to  "View Root Cause", root_cause_url(followup.root_cause.id) %>
+	<br/>
+	<br/>
+	<hr/>
+	<br/>
+<% end %>

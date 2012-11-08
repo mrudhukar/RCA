@@ -47,6 +47,7 @@ gem 'exception_notification', :require => 'exception_notifier'
 # gem 'debugger'
 gem 'pivotal-tracker'
 gem 'rails_autolink', :require => 'rails_autolink'
+gem 'mail'
 
 group :production do
   gem 'pg'
@@ -55,3 +56,7 @@ group :production do
 end
 
 gem "therubyracer"
+
+group :development do
+  gem "letter_opener", :git => 'https://github.com/davidcornu/letter_opener.git'
+end

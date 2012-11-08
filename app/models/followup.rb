@@ -30,4 +30,5 @@ class Followup < ActiveRecord::Base
 
     self.update_attributes!(:pt_id => a.id)
   end
+
 end

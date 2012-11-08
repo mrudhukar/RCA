@@ -8,6 +8,13 @@ GIT
       railties (>= 3.1)
       therubyracer (~> 0.10.1)
 
+GIT
+  remote: https://github.com/davidcornu/letter_opener.git
+  revision: ead65b456e064ba7516bf693c190a68c08302374
+  specs:
+    letter_opener (0.0.2)
+      launchy
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,6 +45,7 @@ GEM
     activesupport (3.2.4)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.2)
     arel (3.0.2)
     authlogic (3.1.2)
       activerecord (>= 3.0.0)
@@ -76,6 +84,8 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
       railties (>= 3.0.0)
+    launchy (2.1.2)
+      addressable (~> 2.3)
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)
@@ -175,6 +185,8 @@ DEPENDENCIES
   exception_notification
   jquery-rails
   kaminari
+  letter_opener!
+  mail
   memcachier
   mysql2
   pg

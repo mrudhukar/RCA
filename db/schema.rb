@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20120927112944) do
   end
 
   create_table "followups", :force => true do |t|
-    t.integer  "team_id"
     t.integer  "root_cause_id"
     t.string   "title"
     t.text     "description"
