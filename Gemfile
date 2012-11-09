@@ -47,7 +47,6 @@ gem 'exception_notification', :require => 'exception_notifier'
 # gem 'debugger'
 gem 'pivotal-tracker'
 gem 'rails_autolink', :require => 'rails_autolink'
-gem 'mail'
 
 group :production do
   gem 'pg'
