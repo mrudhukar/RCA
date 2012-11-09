@@ -186,7 +186,6 @@ DEPENDENCIES
   jquery-rails
   kaminari
   letter_opener!
-  mail
   memcachier
   mysql2
   pg
